@@ -16,5 +16,16 @@ namespace SinergicFailureAftermath
         {
             InitializeComponent();
         }
+
+        private void AboutButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Lorem ipsum");
+        }
+
+        private void добавитьУзелToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddLink AddLinkForm=new AddLink();
+            AddLinkForm.ShowDialog();
+        }
     }
 }
