@@ -1,31 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SynergicFailureAftermath.Forms;
+using SynergicFailureAftermath.Classes;
+using System;
 using System.Windows.Forms;
 
-namespace SinergicFailureAftermath
+namespace SynergicFailureAftermath
 {
-    public partial class MainWindow : Form
+    public struct GRPH
     {
+        Graphs Graph;
+    }
+    public partial class MainWindow : Form
+    { 
+        
         public MainWindow()
         {
             InitializeComponent();
         }
+        
 
         private void AboutButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Lorem ipsum");
+            About about = new About();
+            about.Show();
         }
-
+        
         private void добавитьУзелToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddLink AddLinkForm=new AddLink();
+            AddLinkForm.Owner = this;
             AddLinkForm.ShowDialog();
+            
         }
+       
     }
 }

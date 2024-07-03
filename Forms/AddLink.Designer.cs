@@ -1,4 +1,4 @@
-﻿namespace SinergicFailureAftermath
+﻿namespace SynergicFailureAftermath
 {
     partial class AddLink
     {
@@ -30,8 +30,8 @@
         {
             this.AddNewLink = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.SelectLinkType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.SelectLinkType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,23 +56,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметры";
             // 
-            // SelectLinkType
-            // 
-            this.SelectLinkType.FormattingEnabled = true;
-            this.SelectLinkType.Location = new System.Drawing.Point(79, 21);
-            this.SelectLinkType.Name = "SelectLinkType";
-            this.SelectLinkType.Size = new System.Drawing.Size(121, 24);
-            this.SelectLinkType.TabIndex = 0;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 18);
+            this.label1.Location = new System.Drawing.Point(6, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Тип узла:";
             // 
+            // SelectLinkType
+            // 
+            this.SelectLinkType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.SelectLinkType.FormattingEnabled = true;
+            this.SelectLinkType.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.SelectLinkType.Items.AddRange(new object[] {
+            "ОБЫЧНЫЙ",
+            "ИСТОЧНИК",
+            "ПОТРЕБИТЕЛЬ",
+            "КРИТИЧЕСКИЙ"});
+            this.SelectLinkType.Location = new System.Drawing.Point(79, 21);
+            this.SelectLinkType.Name = "SelectLinkType";
+            this.SelectLinkType.Size = new System.Drawing.Size(121, 23);
+            this.SelectLinkType.TabIndex = 0;
             // AddLink
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);

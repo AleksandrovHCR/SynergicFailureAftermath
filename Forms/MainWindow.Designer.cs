@@ -1,4 +1,4 @@
-﻿namespace SinergicFailureAftermath
+﻿namespace SynergicFailureAftermath
 {
     partial class MainWindow
     {

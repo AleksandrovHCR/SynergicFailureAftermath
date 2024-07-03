@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SinergicFailureAftermath
+namespace SynergicFailureAftermath.Forms
 {
-    public partial class AddLink : Form
+    public partial class About : Form
     {
-        public AddLink()
+        public About()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
