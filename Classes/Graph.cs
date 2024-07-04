@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace SynergicFailureAftermath.Classes
 {
-    internal class Graphs
+    public class Graph
     {
-        private int N_Links = 0;//Число узлов
-        private List<Link> All_Links = null;//Все узлы
-        public Graphs() { }
+        
+
+
+        private int N_Links;//Число узлов
+        private List<Link> All_Links;//Все узлы
+        public Graph() { N_Links = 0; All_Links = new List<Link> { };  }
+        public int GetNLinks() => N_Links;
         public int AddLink(Link link) { All_Links.Add(link);N_Links++; return 0;}
     }
 }

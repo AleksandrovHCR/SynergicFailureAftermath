@@ -30,60 +30,78 @@
         {
             this.AddNewLink = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LinkTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.SelectLinkType = new System.Windows.Forms.ComboBox();
+            this.AddAndExit = new System.Windows.Forms.Button();
+            this.InfoLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddNewLink
             // 
-            this.AddNewLink.Location = new System.Drawing.Point(79, 397);
+            this.AddNewLink.Location = new System.Drawing.Point(9, 89);
             this.AddNewLink.Name = "AddNewLink";
             this.AddNewLink.Size = new System.Drawing.Size(87, 23);
             this.AddNewLink.TabIndex = 0;
             this.AddNewLink.Text = "Добавить";
             this.AddNewLink.UseVisualStyleBackColor = true;
+            this.AddNewLink.Click += new System.EventHandler(this.AddNewLink_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.InfoLabel);
+            this.groupBox1.Controls.Add(this.AddAndExit);
+            this.groupBox1.Controls.Add(this.LinkTypeComboBox);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.AddNewLink);
-            this.groupBox1.Controls.Add(this.SelectLinkType);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 426);
+            this.groupBox1.Size = new System.Drawing.Size(284, 121);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметры";
             // 
+            // LinkTypeComboBox
+            // 
+            this.LinkTypeComboBox.FormattingEnabled = true;
+            this.LinkTypeComboBox.Location = new System.Drawing.Point(79, 24);
+            this.LinkTypeComboBox.Name = "LinkTypeComboBox";
+            this.LinkTypeComboBox.Size = new System.Drawing.Size(131, 24);
+            this.LinkTypeComboBox.TabIndex = 2;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 24);
+            this.label1.Location = new System.Drawing.Point(6, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Тип узла:";
             // 
-            // SelectLinkType
+            // AddAndExit
             // 
-            this.SelectLinkType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.SelectLinkType.FormattingEnabled = true;
-            this.SelectLinkType.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.SelectLinkType.Items.AddRange(new object[] {
-            "ОБЫЧНЫЙ",
-            "ИСТОЧНИК",
-            "ПОТРЕБИТЕЛЬ",
-            "КРИТИЧЕСКИЙ"});
-            this.SelectLinkType.Location = new System.Drawing.Point(79, 21);
-            this.SelectLinkType.Name = "SelectLinkType";
-            this.SelectLinkType.Size = new System.Drawing.Size(121, 23);
-            this.SelectLinkType.TabIndex = 0;
+            this.AddAndExit.Location = new System.Drawing.Point(102, 89);
+            this.AddAndExit.Name = "AddAndExit";
+            this.AddAndExit.Size = new System.Drawing.Size(167, 23);
+            this.AddAndExit.TabIndex = 3;
+            this.AddAndExit.Text = "Добавить и выйти";
+            this.AddAndExit.UseVisualStyleBackColor = true;
+            this.AddAndExit.Click += new System.EventHandler(this.AddAndExit_Click);
+            // 
+            // InfoLabel
+            // 
+            this.InfoLabel.AutoSize = true;
+            this.InfoLabel.Location = new System.Drawing.Point(38, 61);
+            this.InfoLabel.Name = "InfoLabel";
+            this.InfoLabel.Size = new System.Drawing.Size(141, 16);
+            this.InfoLabel.TabIndex = 4;
+            this.InfoLabel.Text = "Количество узлов: 0";
+            // 
             // AddLink
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 450);
+            this.ClientSize = new System.Drawing.Size(303, 136);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddLink";
@@ -98,7 +116,9 @@
 
         private System.Windows.Forms.Button AddNewLink;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox SelectLinkType;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.ComboBox LinkTypeComboBox;
+        private System.Windows.Forms.Label InfoLabel;
+        private System.Windows.Forms.Button AddAndExit;
     }
 }
