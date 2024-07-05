@@ -55,7 +55,7 @@
             this.AboutButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1127, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1127, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -65,7 +65,7 @@
             this.StartButton.Image = ((System.Drawing.Image)(resources.GetObject("StartButton.Image")));
             this.StartButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(29, 28);
+            this.StartButton.Size = new System.Drawing.Size(29, 24);
             this.StartButton.Text = "Начать работу";
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
@@ -79,14 +79,14 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(34, 28);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(34, 24);
             this.toolStripDropDownButton1.Text = "Программа";
             // 
             // добавитьУзелToolStripMenuItem
             // 
             this.добавитьУзелToolStripMenuItem.Enabled = false;
             this.добавитьУзелToolStripMenuItem.Name = "добавитьУзелToolStripMenuItem";
-            this.добавитьУзелToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.добавитьУзелToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
             this.добавитьУзелToolStripMenuItem.Text = "Добавить узел";
             this.добавитьУзелToolStripMenuItem.Click += new System.EventHandler(this.добавитьУзелToolStripMenuItem_Click);
             // 
@@ -94,22 +94,23 @@
             // 
             this.очиститьToolStripMenuItem.Enabled = false;
             this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
-            this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
             this.очиститьToolStripMenuItem.Text = "Очистить";
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
             this.выходToolStripMenuItem.Text = "Выход";
             // 
             // LinkManager
             // 
             this.LinkManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.LinkManager.Enabled = false;
             this.LinkManager.Image = ((System.Drawing.Image)(resources.GetObject("LinkManager.Image")));
             this.LinkManager.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LinkManager.Name = "LinkManager";
-            this.LinkManager.Size = new System.Drawing.Size(29, 28);
+            this.LinkManager.Size = new System.Drawing.Size(29, 24);
             this.LinkManager.Text = "Диспетчер узлов";
             this.LinkManager.Click += new System.EventHandler(this.LinkManager_Click);
             // 
@@ -119,7 +120,7 @@
             this.AboutButton.Image = ((System.Drawing.Image)(resources.GetObject("AboutButton.Image")));
             this.AboutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AboutButton.Name = "AboutButton";
-            this.AboutButton.Size = new System.Drawing.Size(29, 28);
+            this.AboutButton.Size = new System.Drawing.Size(29, 24);
             this.AboutButton.Text = "О программе";
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 

@@ -43,6 +43,7 @@ namespace SynergicFailureAftermath
         {
             InitializeComponent();
             LinkTypeComboBox.Items.AddRange(new string[] { "Обычный", "Источник", "Потребитель", "Критический" });
+            
             GRPH = GRPH1;
             MainWindow = MW;
             LinkAddedInCollection +=new GraphLiveReaction(this.InfoUpd);

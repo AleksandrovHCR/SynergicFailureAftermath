@@ -12,7 +12,7 @@ namespace SynergicFailureAftermath
     public partial class MainWindow : Form
     {
 
-        private delegate void WindowLiveReaction();
+        //private delegate void WindowLiveReaction();
 
 
         private Graph Main_Graph { get; set; }
@@ -53,11 +53,12 @@ namespace SynergicFailureAftermath
             MessageBox.Show("Программа подготовлена к работе.", "Information.",MessageBoxButtons.OK, MessageBoxIcon.Information);
             StartButton.Enabled = false;
             Graph_datagrid.ReadOnly = true;
+            LinkManager.Enabled = true;
         }
 
         private void LinkManager_Click(object sender, EventArgs e)
         {
-            LinkManager linkManager = new LinkManager();
+            LinkManager linkManager = new LinkManager(Main_Graph,this);
             linkManager.ShowDialog();
         }
     }

@@ -30,10 +30,10 @@
         {
             this.AddNewLink = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.InfoLabel = new System.Windows.Forms.Label();
+            this.AddAndExit = new System.Windows.Forms.Button();
             this.LinkTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.AddAndExit = new System.Windows.Forms.Button();
-            this.InfoLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,8 +61,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметры";
             // 
+            // InfoLabel
+            // 
+            this.InfoLabel.AutoSize = true;
+            this.InfoLabel.Location = new System.Drawing.Point(38, 61);
+            this.InfoLabel.Name = "InfoLabel";
+            this.InfoLabel.Size = new System.Drawing.Size(141, 16);
+            this.InfoLabel.TabIndex = 4;
+            this.InfoLabel.Text = "Количество узлов: 0";
+            // 
+            // AddAndExit
+            // 
+            this.AddAndExit.Location = new System.Drawing.Point(102, 89);
+            this.AddAndExit.Name = "AddAndExit";
+            this.AddAndExit.Size = new System.Drawing.Size(167, 23);
+            this.AddAndExit.TabIndex = 3;
+            this.AddAndExit.Text = "Добавить и выйти";
+            this.AddAndExit.UseVisualStyleBackColor = true;
+            this.AddAndExit.Click += new System.EventHandler(this.AddAndExit_Click);
+            // 
             // LinkTypeComboBox
             // 
+            this.LinkTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LinkTypeComboBox.FormattingEnabled = true;
             this.LinkTypeComboBox.Location = new System.Drawing.Point(79, 24);
             this.LinkTypeComboBox.Name = "LinkTypeComboBox";
@@ -77,25 +97,6 @@
             this.label1.Size = new System.Drawing.Size(70, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Тип узла:";
-            // 
-            // AddAndExit
-            // 
-            this.AddAndExit.Location = new System.Drawing.Point(102, 89);
-            this.AddAndExit.Name = "AddAndExit";
-            this.AddAndExit.Size = new System.Drawing.Size(167, 23);
-            this.AddAndExit.TabIndex = 3;
-            this.AddAndExit.Text = "Добавить и выйти";
-            this.AddAndExit.UseVisualStyleBackColor = true;
-            this.AddAndExit.Click += new System.EventHandler(this.AddAndExit_Click);
-            // 
-            // InfoLabel
-            // 
-            this.InfoLabel.AutoSize = true;
-            this.InfoLabel.Location = new System.Drawing.Point(38, 61);
-            this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(141, 16);
-            this.InfoLabel.TabIndex = 4;
-            this.InfoLabel.Text = "Количество узлов: 0";
             // 
             // AddLink
             // 

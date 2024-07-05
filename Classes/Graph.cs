@@ -12,10 +12,12 @@ namespace SynergicFailureAftermath.Classes
         
 
 
-        private int N_Links;//Число узлов
+        //private int N_Links;//Число узлов
         private List<Link> All_Links;//Все узлы
-        public Graph() { N_Links = 0; All_Links = new List<Link> { };  }
-        public int GetNLinks() => N_Links;
-        public int AddLink(Link link) { All_Links.Add(link);N_Links++; return 0;}
+        public Graph() {  All_Links = new List<Link> { };  }
+        public int GetNLinks() => All_Links.Count;
+        public int AddLink(Link link) { All_Links.Add(link); return 0;}
+        public Link GetLink(int Index)=> All_Links[Index];
+        
     }
 }
