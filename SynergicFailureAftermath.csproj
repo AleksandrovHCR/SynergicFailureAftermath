@@ -87,6 +87,9 @@
     <EmbeddedResource Include="Forms\AddLink.resx">
       <DependentUpon>AddLink.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LinkViewer.resx">
+      <DependentUpon>LinkViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

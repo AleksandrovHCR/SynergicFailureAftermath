@@ -26,6 +26,17 @@ namespace SynergicFailureAftermath
         }
         public int AddConnectedLink(Link AddLink) { Connected_Links.Add(AddLink); return 0; } //Добавить соединение
         public Link GetConnectedLink(int Index) => Connected_Links[Index];
+
+        public bool FindConnectedLink(Link link)//Поиск узла в списке
+        {
+            for(int i=0;i<Connected_Links.Count;i++)
+            {
+                if (Connected_Links[i] == link) return true;
+            }
+            return false;
+
+        }
+
         public void changeType(int Index) { _type=setType(Index); }
         //public List<Link> GetConnectedLinks() => Connected_Links;
        
