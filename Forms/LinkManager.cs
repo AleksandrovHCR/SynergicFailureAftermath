@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SynergicFailureAftermath
 {
@@ -19,6 +20,33 @@ namespace SynergicFailureAftermath
         private delegate void LiveReaction(Link Link);
         private event LiveReaction LinkManagerLiveReaction;
 
+
+        private void DataGridUpd()
+        {
+            for(int i=1;i<MainWindow.Graph_datagrid.Columns.Count;i++)
+            { 
+                Link G = Graph.GetLink(i-1);
+                for (int j = 0; j < MainWindow.Graph_datagrid.Columns.Count; j++)
+                {
+                    if (i - 1 != j)
+                    {
+
+                        if (G.FindConnectedLink(j))
+                        {
+                            MainWindow.Graph_datagrid[i, j].Value = "+";
+                        }
+                        else
+                        {
+                            MainWindow.Graph_datagrid[i, j].Value = " ";
+                        }
+                    }
+                }
+            }
+            
+        }
+
+
+
         private void ShowAllConnectedLinks(Link Link)//Связанные узлы
         {
             Connected_links.Items.Clear();
@@ -26,7 +54,9 @@ namespace SynergicFailureAftermath
             {
                 for (int i = 0;i<Link.GetLinks(); i++)
                 {
-                    Connected_links.Items.Add(Graph.GetLink(i).GetConnectedLink(i).getIndex()+1);
+                    //Connected_links.Items.Add(Graph.GetLink(i).GetConnectedLink(i).getIndex()+1);
+                    Connected_links.Items.Add(Link.GetConnectedLink(i).getIndex() + 1);
+                    //Link.GetConnectedLink(i).getIndex() + 1;
                 }
             }
             
@@ -52,7 +82,7 @@ namespace SynergicFailureAftermath
             {
                 for(int i = 0;i< Graph.GetNLinks(); i++)
                 {
-                    if(Graph.GetLink(i).getIndex()!=Link.getIndex() && !Graph.GetLink(i).FindConnectedLink(Link))
+                    if(Graph.GetLink(i).getIndex()!=Link.getIndex() && !Link.FindConnectedLink(Graph.GetLink(i)))
                     Avaliable_to_connect.Items.Add(Graph.GetLink(i).getIndex()+1);
                 }
             }
@@ -110,9 +140,36 @@ namespace SynergicFailureAftermath
             }
             else
             {
-                Graph.GetLink(LinksCombo.SelectedIndex).AddConnectedLink(Graph.GetLink(Avaliable_to_connect.SelectedIndex));
-                LinkManagerLiveReaction.Invoke(Graph.GetLink(LinksCombo.SelectedIndex));
+
+                //int SItem=Int32.Parse(Avaliable_to_connect.SelectedItem.ToString())-1;
+                //Link test = Graph.GetLink(SItem);
+
+                //SItem = Int32.Parse(LinksCombo.SelectedItem.ToString())-1;
+
+                //Graph.GetLink(SItem).AddConnectedLink(test);
+                //LinkManagerLiveReaction.Invoke(Graph.GetLink(SItem));
+                Graph.GetLink(Int32.Parse(LinksCombo.SelectedItem.ToString()) - 1).AddConnectedLink(Graph.GetLink(Int32.Parse(Avaliable_to_connect.SelectedItem.ToString()) - 1));
+                LinkManagerLiveReaction.Invoke(Graph.GetLink(Int32.Parse(LinksCombo.SelectedItem.ToString()) - 1));
+                DataGridUpd();
             }
         }
+
+        private void RemoveConnect_Click(object sender, EventArgs e)
+        {
+            if (Connected_links.SelectedItem == null || LinksCombo.SelectedItem == null)
+            {
+                MessageBox.Show("Узел для отключения не выбран.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {//To do. Сделать взаимное удаление связей
+                int SItem =Int32.Parse(Connected_links.SelectedItem.ToString())-1;
+                Link test = Graph.GetLink(SItem);
+                SItem = Int32.Parse(LinksCombo.SelectedItem.ToString()) - 1;
+                Graph.GetLink(SItem).RemoveConnectedLink(test.getIndex());
+                LinkManagerLiveReaction.Invoke(Graph.GetLink(SItem));
+                DataGridUpd();
+            }
+        }
+
     }
 }

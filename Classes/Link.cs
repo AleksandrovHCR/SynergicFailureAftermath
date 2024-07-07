@@ -24,17 +24,34 @@ namespace SynergicFailureAftermath
             if (_type == Link_type.CRITICAL) return 4;
             else return 0;
         }
-        public int AddConnectedLink(Link AddLink) { Connected_Links.Add(AddLink); return 0; } //Добавить соединение
+        public int AddConnectedLink(Link AddLink) { Connected_Links.Add(AddLink);AddLink.Connected_Links.Add(this); return 0; } //Добавить соединение
         public Link GetConnectedLink(int Index) => Connected_Links[Index];
 
-        public bool FindConnectedLink(Link link)//Поиск узла в списке
+        public bool FindConnectedLink(Link link)//Поиск узла в списке 1
         {
             for(int i=0;i<Connected_Links.Count;i++)
             {
-                if (Connected_Links[i] == link) return true;
+                if (Connected_Links[i].getIndex() == link.getIndex()) return true;
             }
             return false;
+        }
+        public bool FindConnectedLink(int Index)//Поиск узла в списке 2
+        {
+            for (int i = 0; i < Connected_Links.Count; i++)
+            {
+                if (Connected_Links[i].getIndex() == Index) return true;
+            }
+            return false;
+        }
 
+
+        public void RemoveConnectedLink(int Index) {//Удаление узла из списка
+            for (int i = 0; i < Connected_Links.Count; i++)
+                if (Connected_Links[i].getIndex() == Index)
+                {
+                    Connected_Links.Remove(Connected_Links[i]);
+                    break;
+                }
         }
 
         public void changeType(int Index) { _type=setType(Index); }

@@ -79,6 +79,12 @@
     <Compile Include="Forms\LinkManager.Designer.cs">
       <DependentUpon>LinkManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Modelling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modelling.Designer.cs">
+      <DependentUpon>Modelling.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\About.resx">
