@@ -102,6 +102,9 @@
     <EmbeddedResource Include="Forms\LinkManager.resx">
       <DependentUpon>LinkManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Modelling.resx">
+      <DependentUpon>Modelling.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

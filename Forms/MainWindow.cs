@@ -54,12 +54,19 @@ namespace SynergicFailureAftermath
             StartButton.Enabled = false;
             Graph_datagrid.ReadOnly = true;
             LinkManager.Enabled = true;
+            ModellingButton.Enabled = true;
         }
 
         private void LinkManager_Click(object sender, EventArgs e)
         {
             LinkManager linkManager = new LinkManager(Main_Graph,this);
             linkManager.ShowDialog();
+        }
+
+        private void ModellingButton_Click(object sender, EventArgs e)
+        {
+            Modelling modelling=new Modelling(Main_Graph);
+            modelling.ShowDialog();
         }
     }
 }

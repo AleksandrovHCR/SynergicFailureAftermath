@@ -141,13 +141,7 @@ namespace SynergicFailureAftermath
             else
             {
 
-                //int SItem=Int32.Parse(Avaliable_to_connect.SelectedItem.ToString())-1;
-                //Link test = Graph.GetLink(SItem);
-
-                //SItem = Int32.Parse(LinksCombo.SelectedItem.ToString())-1;
-
-                //Graph.GetLink(SItem).AddConnectedLink(test);
-                //LinkManagerLiveReaction.Invoke(Graph.GetLink(SItem));
+                
                 Graph.GetLink(Int32.Parse(LinksCombo.SelectedItem.ToString()) - 1).AddConnectedLink(Graph.GetLink(Int32.Parse(Avaliable_to_connect.SelectedItem.ToString()) - 1));
                 LinkManagerLiveReaction.Invoke(Graph.GetLink(Int32.Parse(LinksCombo.SelectedItem.ToString()) - 1));
                 DataGridUpd();
@@ -161,15 +155,40 @@ namespace SynergicFailureAftermath
                 MessageBox.Show("Узел для отключения не выбран.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
-            {//To do. Сделать взаимное удаление связей
+            {
                 int SItem =Int32.Parse(Connected_links.SelectedItem.ToString())-1;
                 Link test = Graph.GetLink(SItem);
                 SItem = Int32.Parse(LinksCombo.SelectedItem.ToString()) - 1;
                 Graph.GetLink(SItem).RemoveConnectedLink(test.getIndex());
+                Graph.GetLink(test.getIndex()).RemoveConnectedLink(SItem);
                 LinkManagerLiveReaction.Invoke(Graph.GetLink(SItem));
                 DataGridUpd();
             }
         }
 
+        private void Avaliable_to_connect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int SItem = Int32.Parse(Avaliable_to_connect.SelectedItem.ToString()) - 1;
+            switch(Graph.GetLink(SItem).GetLinkType()) {
+                case 1: label4.Text = "Тип: Обычный";break;
+                case 2: label4.Text = "Тип: Источник"; break;
+                case 3: label4.Text = "Тип: Потребитель"; break;
+                case 4: label4.Text = "Тип: Критический"; break;
+                default: label4.Text = "Тип: Обычный"; break;
+            }
+        }
+
+        private void Connected_links_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int SItem = Int32.Parse(Connected_links.SelectedItem.ToString()) - 1;
+            switch (Graph.GetLink(SItem).GetLinkType())
+            {
+                case 1: label5.Text = "Тип: Обычный"; break;
+                case 2: label5.Text = "Тип: Источник"; break;
+                case 3: label5.Text = "Тип: Потребитель"; break;
+                case 4: label5.Text = "Тип: Критический"; break;
+                default: label5.Text = "Тип: Обычный"; break;
+            }
+        }
     }
 }

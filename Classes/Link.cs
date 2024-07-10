@@ -1,21 +1,22 @@
 ﻿using SynergicFailureAftermath.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.PerformanceData;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SynergicFailureAftermath
 {
-    public class Link:P_Link
+    public class Link : P_Link
     {
         private Link_type _type; //Тип
         //private int Links=0;//Число связанных узлов
         private List<Link> Connected_Links;//Связанные узлы
         private Instance _instance; //Состояние
-        public int getIndex() => Index; 
+        public int getIndex() => Index;
         public int GetLinks() => Connected_Links.Count;
-        public Link(int Index,int IDType) { this.Index = Index;_type = setType(IDType);Connected_Links = new List<Link> { }; }//Добавить узел
+        public Link(int Index, int IDType) { this.Index = Index; _type = setType(IDType); Connected_Links = new List<Link> { };_instance = this.SetInstance(2); }//Добавить узел
         public int GetLinkType()
         {
             if (_type == Link_type.DEFAULT) return 1;
@@ -24,12 +25,13 @@ namespace SynergicFailureAftermath
             if (_type == Link_type.CRITICAL) return 4;
             else return 0;
         }
-        public int AddConnectedLink(Link AddLink) { Connected_Links.Add(AddLink);AddLink.Connected_Links.Add(this); return 0; } //Добавить соединение
+        #region Connection
+        public int AddConnectedLink(Link AddLink) { Connected_Links.Add(AddLink); AddLink.Connected_Links.Add(this); return 0; } //Добавить соединение
         public Link GetConnectedLink(int Index) => Connected_Links[Index];
 
         public bool FindConnectedLink(Link link)//Поиск узла в списке 1
         {
-            for(int i=0;i<Connected_Links.Count;i++)
+            for (int i = 0; i < Connected_Links.Count; i++)
             {
                 if (Connected_Links[i].getIndex() == link.getIndex()) return true;
             }
@@ -43,19 +45,49 @@ namespace SynergicFailureAftermath
             }
             return false;
         }
-
-
-        public void RemoveConnectedLink(int Index) {//Удаление узла из списка
+        public void RemoveConnectedLink(int Index)
+        {//Удаление узла из списка
             for (int i = 0; i < Connected_Links.Count; i++)
                 if (Connected_Links[i].getIndex() == Index)
                 {
                     Connected_Links.Remove(Connected_Links[i]);
+                    //Connected_Links[i].RemoveConnectedLink(this.getIndex());
                     break;
                 }
         }
+        #endregion
+        public void changeType(int Index) { _type = setType(Index); }
 
-        public void changeType(int Index) { _type=setType(Index); }
-        //public List<Link> GetConnectedLinks() => Connected_Links;
-       
+        private Instance GetInstance() => _instance;
+
+        public void SetLinkInstance(int Index)
+        {
+            _instance=SetInstance(Index);
+        }
+        public void ProvideEnergy()
+        {
+            if (this._instance == Instance.WORKING)
+            {
+                for (int i = 0; i < Connected_Links.Count; i++)
+                {
+                    if (Connected_Links[i].GetInstance() != Instance.BROKEN)
+                    {
+                        Connected_Links[i].SetLinkInstance(1);
+                    }
+                }
+            }
+
+        }
+        public int GetLinkInstance()
+        {
+            switch(_instance)
+            {
+                case Instance.WORKING: return 1;
+                case Instance.BROKEN: return 3;
+                case Instance.DISABLED: return 2;
+                case Instance.NOTCONNECTED: return 4;
+                default: return 3;
+            }
+        }
     }
 }

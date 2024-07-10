@@ -36,6 +36,7 @@
             this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LinkManager = new System.Windows.Forms.ToolStripButton();
+            this.ModellingButton = new System.Windows.Forms.ToolStripButton();
             this.AboutButton = new System.Windows.Forms.ToolStripButton();
             this.Graph_box = new System.Windows.Forms.GroupBox();
             this.Graph_datagrid = new System.Windows.Forms.DataGridView();
@@ -52,10 +53,11 @@
             this.StartButton,
             this.toolStripDropDownButton1,
             this.LinkManager,
+            this.ModellingButton,
             this.AboutButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1127, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1009, 31);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -65,7 +67,7 @@
             this.StartButton.Image = ((System.Drawing.Image)(resources.GetObject("StartButton.Image")));
             this.StartButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(29, 24);
+            this.StartButton.Size = new System.Drawing.Size(29, 28);
             this.StartButton.Text = "Начать работу";
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
@@ -79,7 +81,7 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(34, 24);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(34, 28);
             this.toolStripDropDownButton1.Text = "Программа";
             // 
             // добавитьУзелToolStripMenuItem
@@ -110,9 +112,20 @@
             this.LinkManager.Image = ((System.Drawing.Image)(resources.GetObject("LinkManager.Image")));
             this.LinkManager.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LinkManager.Name = "LinkManager";
-            this.LinkManager.Size = new System.Drawing.Size(29, 24);
+            this.LinkManager.Size = new System.Drawing.Size(29, 28);
             this.LinkManager.Text = "Диспетчер узлов";
             this.LinkManager.Click += new System.EventHandler(this.LinkManager_Click);
+            // 
+            // ModellingButton
+            // 
+            this.ModellingButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ModellingButton.Enabled = false;
+            this.ModellingButton.Image = ((System.Drawing.Image)(resources.GetObject("ModellingButton.Image")));
+            this.ModellingButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ModellingButton.Name = "ModellingButton";
+            this.ModellingButton.Size = new System.Drawing.Size(29, 28);
+            this.ModellingButton.Text = "Моделирование работы системы";
+            this.ModellingButton.Click += new System.EventHandler(this.ModellingButton_Click);
             // 
             // AboutButton
             // 
@@ -120,7 +133,7 @@
             this.AboutButton.Image = ((System.Drawing.Image)(resources.GetObject("AboutButton.Image")));
             this.AboutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AboutButton.Name = "AboutButton";
-            this.AboutButton.Size = new System.Drawing.Size(29, 24);
+            this.AboutButton.Size = new System.Drawing.Size(29, 28);
             this.AboutButton.Text = "О программе";
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
@@ -167,7 +180,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1127, 625);
+            this.ClientSize = new System.Drawing.Size(1009, 625);
             this.Controls.Add(this.Graph_box);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -198,6 +211,7 @@
         private System.Windows.Forms.ToolStripButton LinkManager;
         public System.Windows.Forms.DataGridView Graph_datagrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
+        private System.Windows.Forms.ToolStripButton ModellingButton;
     }
 }
 
