@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.RepairLink = new System.Windows.Forms.Button();
+            this.BreakLink = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Critical_broken = new System.Windows.Forms.ListBox();
+            this.Critical_working = new System.Windows.Forms.ListBox();
+            this.CancelModelling = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SourceList = new System.Windows.Forms.DataGridView();
             this.DGWSourceIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,20 +47,12 @@
             this.LinkInstanceIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LinkInstanceType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LinkInstanceInstance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CancelModelling = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.Critical_working = new System.Windows.Forms.ListBox();
-            this.Critical_broken = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.RepairLink = new System.Windows.Forms.Button();
-            this.BreakLink = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SourceList)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LinksInstanceGrid)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -68,6 +68,89 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Данные по узлам";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.RepairLink);
+            this.groupBox4.Controls.Add(this.BreakLink);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.Critical_broken);
+            this.groupBox4.Controls.Add(this.Critical_working);
+            this.groupBox4.Location = new System.Drawing.Point(6, 201);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(400, 149);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Критические узлы";
+            // 
+            // RepairLink
+            // 
+            this.RepairLink.Location = new System.Drawing.Point(149, 73);
+            this.RepairLink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RepairLink.Name = "RepairLink";
+            this.RepairLink.Size = new System.Drawing.Size(101, 23);
+            this.RepairLink.TabIndex = 7;
+            this.RepairLink.Text = "Удалить";
+            this.RepairLink.UseVisualStyleBackColor = true;
+            this.RepairLink.Click += new System.EventHandler(this.RepairLink_Click);
+            // 
+            // BreakLink
+            // 
+            this.BreakLink.Location = new System.Drawing.Point(149, 43);
+            this.BreakLink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BreakLink.Name = "BreakLink";
+            this.BreakLink.Size = new System.Drawing.Size(101, 23);
+            this.BreakLink.TabIndex = 6;
+            this.BreakLink.Text = "Добавить";
+            this.BreakLink.UseVisualStyleBackColor = true;
+            this.BreakLink.Click += new System.EventHandler(this.BreakLink_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(284, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 16);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Сломанные:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 16);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Работающие:";
+            // 
+            // Critical_broken
+            // 
+            this.Critical_broken.FormattingEnabled = true;
+            this.Critical_broken.ItemHeight = 16;
+            this.Critical_broken.Location = new System.Drawing.Point(274, 43);
+            this.Critical_broken.Name = "Critical_broken";
+            this.Critical_broken.Size = new System.Drawing.Size(120, 100);
+            this.Critical_broken.TabIndex = 1;
+            // 
+            // Critical_working
+            // 
+            this.Critical_working.FormattingEnabled = true;
+            this.Critical_working.ItemHeight = 16;
+            this.Critical_working.Location = new System.Drawing.Point(6, 43);
+            this.Critical_working.Name = "Critical_working";
+            this.Critical_working.Size = new System.Drawing.Size(120, 100);
+            this.Critical_working.TabIndex = 0;
+            // 
+            // CancelModelling
+            // 
+            this.CancelModelling.Location = new System.Drawing.Point(59, 388);
+            this.CancelModelling.Name = "CancelModelling";
+            this.CancelModelling.Size = new System.Drawing.Size(264, 26);
+            this.CancelModelling.TabIndex = 3;
+            this.CancelModelling.Text = "Откатить состояние\r\n";
+            this.CancelModelling.UseVisualStyleBackColor = true;
+            this.CancelModelling.Click += new System.EventHandler(this.CancelModelling_Click);
             // 
             // groupBox3
             // 
@@ -168,87 +251,6 @@
             this.LinkInstanceInstance.ReadOnly = true;
             this.LinkInstanceInstance.Width = 125;
             // 
-            // CancelModelling
-            // 
-            this.CancelModelling.Location = new System.Drawing.Point(59, 388);
-            this.CancelModelling.Name = "CancelModelling";
-            this.CancelModelling.Size = new System.Drawing.Size(264, 26);
-            this.CancelModelling.TabIndex = 3;
-            this.CancelModelling.Text = "Откатить состояние\r\n";
-            this.CancelModelling.UseVisualStyleBackColor = true;
-            this.CancelModelling.Click += new System.EventHandler(this.CancelModelling_Click);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.RepairLink);
-            this.groupBox4.Controls.Add(this.BreakLink);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.Critical_broken);
-            this.groupBox4.Controls.Add(this.Critical_working);
-            this.groupBox4.Location = new System.Drawing.Point(6, 201);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(400, 149);
-            this.groupBox4.TabIndex = 4;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Критические узлы";
-            // 
-            // Critical_working
-            // 
-            this.Critical_working.FormattingEnabled = true;
-            this.Critical_working.ItemHeight = 16;
-            this.Critical_working.Location = new System.Drawing.Point(6, 43);
-            this.Critical_working.Name = "Critical_working";
-            this.Critical_working.Size = new System.Drawing.Size(120, 100);
-            this.Critical_working.TabIndex = 0;
-            // 
-            // Critical_broken
-            // 
-            this.Critical_broken.FormattingEnabled = true;
-            this.Critical_broken.ItemHeight = 16;
-            this.Critical_broken.Location = new System.Drawing.Point(274, 43);
-            this.Critical_broken.Name = "Critical_broken";
-            this.Critical_broken.Size = new System.Drawing.Size(120, 100);
-            this.Critical_broken.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 16);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Работающие:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(284, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Сломанные:";
-            // 
-            // RepairLink
-            // 
-            this.RepairLink.Location = new System.Drawing.Point(149, 73);
-            this.RepairLink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.RepairLink.Name = "RepairLink";
-            this.RepairLink.Size = new System.Drawing.Size(101, 23);
-            this.RepairLink.TabIndex = 7;
-            this.RepairLink.Text = "Удалить";
-            this.RepairLink.UseVisualStyleBackColor = true;
-            // 
-            // BreakLink
-            // 
-            this.BreakLink.Location = new System.Drawing.Point(149, 43);
-            this.BreakLink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BreakLink.Name = "BreakLink";
-            this.BreakLink.Size = new System.Drawing.Size(101, 23);
-            this.BreakLink.TabIndex = 6;
-            this.BreakLink.Text = "Добавить";
-            this.BreakLink.UseVisualStyleBackColor = true;
-            // 
             // Modelling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -259,12 +261,12 @@
             this.Name = "Modelling";
             this.Text = "Моделирование работы";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SourceList)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LinksInstanceGrid)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }

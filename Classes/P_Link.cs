@@ -37,8 +37,7 @@ namespace SynergicFailureAftermath.Classes
             {
                 case 1: return Instance.WORKING;
                 case 2: return Instance.DISABLED;
-                case 3: return Instance.BROKEN;
-                case 4: return Instance.NOTCONNECTED;   
+                case 3: return Instance.BROKEN;  
                 default: return Instance.WORKING;
             }
         }

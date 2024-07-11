@@ -33,7 +33,7 @@
             this.StartButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.добавитьУзелToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.удалитьузелToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LinkManager = new System.Windows.Forms.ToolStripButton();
             this.ModellingButton = new System.Windows.Forms.ToolStripButton();
@@ -76,7 +76,7 @@
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавитьУзелToolStripMenuItem,
-            this.очиститьToolStripMenuItem,
+            this.удалитьузелToolStripMenuItem,
             this.выходToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -88,21 +88,22 @@
             // 
             this.добавитьУзелToolStripMenuItem.Enabled = false;
             this.добавитьУзелToolStripMenuItem.Name = "добавитьУзелToolStripMenuItem";
-            this.добавитьУзелToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+            this.добавитьУзелToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.добавитьУзелToolStripMenuItem.Text = "Добавить узел";
             this.добавитьУзелToolStripMenuItem.Click += new System.EventHandler(this.добавитьУзелToolStripMenuItem_Click);
             // 
-            // очиститьToolStripMenuItem
+            // удалитьузелToolStripMenuItem
             // 
-            this.очиститьToolStripMenuItem.Enabled = false;
-            this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
-            this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
-            this.очиститьToolStripMenuItem.Text = "Очистить";
+            this.удалитьузелToolStripMenuItem.Enabled = false;
+            this.удалитьузелToolStripMenuItem.Name = "удалитьузелToolStripMenuItem";
+            this.удалитьузелToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.удалитьузелToolStripMenuItem.Text = "Удалить узел";
+            this.удалитьузелToolStripMenuItem.Click += new System.EventHandler(this.удалитьузелToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.выходToolStripMenuItem.Text = "Выход";
             // 
             // LinkManager
@@ -204,7 +205,7 @@
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton AboutButton;
-        private System.Windows.Forms.ToolStripMenuItem очиститьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem удалитьузелToolStripMenuItem;
         private System.Windows.Forms.GroupBox Graph_box;
         private System.Windows.Forms.ToolStripMenuItem добавитьУзелToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton StartButton;

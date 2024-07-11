@@ -17,6 +17,7 @@ namespace SynergicFailureAftermath.Forms
 
         private delegate void PowerPlant();
         private PowerPlant _powerPlant;
+        //private PowerPlant _disablePower;
 
         private void EnableSources()
         {
@@ -30,7 +31,25 @@ namespace SynergicFailureAftermath.Forms
             }
         }
 
-      
+      private void UpdateCLinkLists()
+        {
+            Critical_working.Items.Clear();
+            Critical_broken.Items.Clear();
+            for (int i = 0; i < Graph.GetNLinks(); i++)
+            {
+                if (Graph.GetLink(i).GetLinkType() == 4 && Graph.GetLink(i).GetLinkInstance()!=3)
+                {
+                    Critical_working.Items.Add($"{Graph.GetLink(i).getIndex() + 1}");
+                }
+            }
+            for (int i = 0; i < Graph.GetNLinks(); i++)
+            {
+                if (Graph.GetLink(i).GetLinkType() == 4 && Graph.GetLink(i).GetLinkInstance() == 3)
+                {
+                    Critical_broken.Items.Add($"{Graph.GetLink(i).getIndex() + 1}");
+                }
+            }
+        }
 
         private void UpdateDatagrid()
         {
@@ -81,6 +100,8 @@ namespace SynergicFailureAftermath.Forms
             _powerPlant += EnableSources;
             _powerPlant += Graph.Energize;
             _powerPlant += UpdateDatagrid;
+            UpdateCLinkLists();
+           
         }
 
         private void StartModelling_Click(object sender, EventArgs e)
@@ -90,7 +111,27 @@ namespace SynergicFailureAftermath.Forms
 
         private void CancelModelling_Click(object sender, EventArgs e)
         {
+            for(int i=0;i< Graph.GetNLinks();i++)
+            {
+                
+                Graph.GetLink(i).SetLinkInstance(2);
+            }
+            UpdateDatagrid();
+            UpdateCLinkLists();
+        }
 
+        private void BreakLink_Click(object sender, EventArgs e)
+        {
+            if(Critical_working.SelectedItem!=null)
+           Graph.GetLink(Int32.Parse(Critical_working.SelectedItem.ToString()) - 1).SetLinkInstance(3);
+            UpdateCLinkLists();
+        }
+
+        private void RepairLink_Click(object sender, EventArgs e)
+        {
+            if (Critical_broken.SelectedItem != null)
+                Graph.GetLink(Int32.Parse(Critical_broken.SelectedItem.ToString()) - 1).SetLinkInstance(2);
+            UpdateCLinkLists();
         }
     }
 }

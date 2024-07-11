@@ -168,7 +168,9 @@ namespace SynergicFailureAftermath
 
         private void Avaliable_to_connect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int SItem = Int32.Parse(Avaliable_to_connect.SelectedItem.ToString()) - 1;
+           
+                int SItem = Int32.Parse(Avaliable_to_connect.SelectedItem.ToString()) - 1; 
+            
             switch(Graph.GetLink(SItem).GetLinkType()) {
                 case 1: label4.Text = "Тип: Обычный";break;
                 case 2: label4.Text = "Тип: Источник"; break;

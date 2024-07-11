@@ -76,7 +76,43 @@ namespace SynergicFailureAftermath
                     }
                 }
             }
+        }
 
+        public void DisableBranch()
+        {
+            if (this._instance == Instance.BROKEN)
+            {
+                for (int i = 0; i < Connected_Links.Count; i++)
+                {
+                    if (Connected_Links[i].GetInstance() != Instance.WORKING)
+                    {
+                        Connected_Links[i].SetLinkInstance(3);
+                    }
+                }
+            }
+        }
+
+        public bool CheckConnectedLinks()
+        {
+            foreach (Link link in Connected_Links)
+            {
+                if (link.GetLinkInstance() == 1 && _instance != Instance.BROKEN)
+                {
+                    _instance = Instance.WORKING;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CheckBrokenLinks()
+        {
+            foreach (Link link in Connected_Links)
+            {
+                if(link.GetLinkInstance() == 1) return false;
+            }
+            _instance = Instance.BROKEN;
+            return true;
         }
         public int GetLinkInstance()
         {
