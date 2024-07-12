@@ -14,10 +14,22 @@ namespace SynergicFailureAftermath.Forms
     public partial class Modelling : Form
     {
         private Graph Graph;
+        private List<Failure> FailureLog;
 
         private delegate void PowerPlant();
         private PowerPlant _powerPlant;
         //private PowerPlant _disablePower;
+
+
+        private bool BrokenCheck()
+        {
+            for(int i = 0; i < Graph.GetNLinks(); i++)
+            {
+                if (Graph.GetLink(i).GetLinkInstance() == 3)
+                    return true;
+            }
+            return false;
+        }
 
         private void EnableSources()
         {
@@ -80,7 +92,7 @@ namespace SynergicFailureAftermath.Forms
             InitializeComponent();
             this.Graph = Graph;
             UpdateDatagrid();
-            
+            FailureLog = new List<Failure> { };
             SourceList.Rows.Clear();
             for (int i = 0;i<Graph.GetNLinks();i++) {
                 if (Graph.GetLink(i).GetLinkType() == 2)
@@ -107,6 +119,13 @@ namespace SynergicFailureAftermath.Forms
         private void StartModelling_Click(object sender, EventArgs e)
         {
             _powerPlant.Invoke();
+            if (BrokenCheck())
+            {
+                Failure failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks());
+                if(!FailureLog.Contains(failure))
+                FailureLog.Add(failure);
+            }
+            StartModelling.Enabled = false;
         }
 
         private void CancelModelling_Click(object sender, EventArgs e)
@@ -118,6 +137,7 @@ namespace SynergicFailureAftermath.Forms
             }
             UpdateDatagrid();
             UpdateCLinkLists();
+            StartModelling.Enabled=true;
         }
 
         private void BreakLink_Click(object sender, EventArgs e)
@@ -132,6 +152,12 @@ namespace SynergicFailureAftermath.Forms
             if (Critical_broken.SelectedItem != null)
                 Graph.GetLink(Int32.Parse(Critical_broken.SelectedItem.ToString()) - 1).SetLinkInstance(2);
             UpdateCLinkLists();
+        }
+
+        private void расчитатьПоследствияОтказовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SynergeticFailureAftermatch synergeticFailureAftermatch = new SynergeticFailureAftermatch(FailureLog);
+            synergeticFailureAftermatch.ShowDialog();
         }
     }
 }

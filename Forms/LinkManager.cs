@@ -168,28 +168,34 @@ namespace SynergicFailureAftermath
 
         private void Avaliable_to_connect_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-                int SItem = Int32.Parse(Avaliable_to_connect.SelectedItem.ToString()) - 1; 
-            
-            switch(Graph.GetLink(SItem).GetLinkType()) {
-                case 1: label4.Text = "Тип: Обычный";break;
-                case 2: label4.Text = "Тип: Источник"; break;
-                case 3: label4.Text = "Тип: Потребитель"; break;
-                case 4: label4.Text = "Тип: Критический"; break;
-                default: label4.Text = "Тип: Обычный"; break;
+            if (Avaliable_to_connect.SelectedItem != null)
+            {
+                int SItem = Int32.Parse(Avaliable_to_connect.SelectedItem.ToString()) - 1;
+
+                switch (Graph.GetLink(SItem).GetLinkType())
+                {
+                    case 1: label4.Text = "Тип: Обычный"; break;
+                    case 2: label4.Text = "Тип: Источник"; break;
+                    case 3: label4.Text = "Тип: Потребитель"; break;
+                    case 4: label4.Text = "Тип: Критический"; break;
+                    default: label4.Text = "Тип: Обычный"; break;
+                }
             }
         }
 
         private void Connected_links_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int SItem = Int32.Parse(Connected_links.SelectedItem.ToString()) - 1;
-            switch (Graph.GetLink(SItem).GetLinkType())
+            if (Connected_links.SelectedItem != null)
             {
-                case 1: label5.Text = "Тип: Обычный"; break;
-                case 2: label5.Text = "Тип: Источник"; break;
-                case 3: label5.Text = "Тип: Потребитель"; break;
-                case 4: label5.Text = "Тип: Критический"; break;
-                default: label5.Text = "Тип: Обычный"; break;
+                int SItem = Int32.Parse(Connected_links.SelectedItem.ToString()) - 1;
+                switch (Graph.GetLink(SItem).GetLinkType())
+                {
+                    case 1: label5.Text = "Тип: Обычный"; break;
+                    case 2: label5.Text = "Тип: Источник"; break;
+                    case 3: label5.Text = "Тип: Потребитель"; break;
+                    case 4: label5.Text = "Тип: Критический"; break;
+                    default: label5.Text = "Тип: Обычный"; break;
+                }
             }
         }
     }

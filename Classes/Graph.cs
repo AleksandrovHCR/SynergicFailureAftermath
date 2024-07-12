@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Windows.Forms.LinkLabel;
 
 namespace SynergicFailureAftermath.Classes
@@ -56,7 +57,16 @@ namespace SynergicFailureAftermath.Classes
                         link.DisableBranch();
                 }    
         }
-
+        public List<Link> GetBrokenLinks()
+        {
+            List < Link > BLinks = new List<Link>() { };
+            foreach (Link link in All_Links)
+            {
+                if(link.GetLinkInstance()==3)
+                    BLinks.Add(link);
+            }
+            return BLinks;
+        }
 
     }
 }

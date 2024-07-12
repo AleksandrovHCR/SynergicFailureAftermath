@@ -47,12 +47,15 @@
             this.LinkInstanceIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LinkInstanceType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LinkInstanceInstance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.расчитатьПоследствияОтказовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SourceList)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LinksInstanceGrid)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -62,7 +65,7 @@
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.StartModelling);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(4, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(945, 426);
             this.groupBox1.TabIndex = 0;
@@ -251,13 +254,33 @@
             this.LinkInstanceInstance.ReadOnly = true;
             this.LinkInstanceInstance.Width = 125;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.расчитатьПоследствияОтказовToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(961, 28);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // расчитатьПоследствияОтказовToolStripMenuItem
+            // 
+            this.расчитатьПоследствияОтказовToolStripMenuItem.Name = "расчитатьПоследствияОтказовToolStripMenuItem";
+            this.расчитатьПоследствияОтказовToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
+            this.расчитатьПоследствияОтказовToolStripMenuItem.Text = "Расчитать последствия отказов";
+            this.расчитатьПоследствияОтказовToolStripMenuItem.Click += new System.EventHandler(this.расчитатьПоследствияОтказовToolStripMenuItem_Click);
+            // 
             // Modelling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 450);
+            this.ClientSize = new System.Drawing.Size(961, 456);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Modelling";
             this.Text = "Моделирование работы";
             this.groupBox1.ResumeLayout(false);
@@ -267,7 +290,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.SourceList)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LinksInstanceGrid)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -292,5 +318,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button RepairLink;
         private System.Windows.Forms.Button BreakLink;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem расчитатьПоследствияОтказовToolStripMenuItem;
     }
 }

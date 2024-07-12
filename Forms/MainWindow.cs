@@ -74,7 +74,7 @@ namespace SynergicFailureAftermath
            // удалитьузелToolStripMenuItem.Enabled = true;
             Graph_box.Enabled = true;
             InitializeGraph();
-            MessageBox.Show("Программа подготовлена к работе.", "Information.",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Программа подготовлена к работе", "Information",MessageBoxButtons.OK, MessageBoxIcon.Information);
             StartButton.Enabled = false;
             Graph_datagrid.ReadOnly = true;
             LinkManager.Enabled = true;
