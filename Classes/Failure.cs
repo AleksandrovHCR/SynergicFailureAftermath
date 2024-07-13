@@ -28,7 +28,16 @@ namespace SynergicFailureAftermath.Classes
             return temp;
         }
         public int GetIndex() =>Index;
-        public int GetScaleOfFailure() =>ScaleOfFailure.Count;
+        public int GetScaleOfFailure()
+        {
+            int summ = 0;
+            foreach (Link link in ScaleOfFailure)
+            {
+                if(link.GetLinkType()==3)
+                    summ++;
+            }
+            return summ;
+        }
         public Link GetBreaked(int Index) => ScaleOfFailure[Index];
 
 

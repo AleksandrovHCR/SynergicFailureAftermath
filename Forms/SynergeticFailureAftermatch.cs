@@ -117,9 +117,9 @@ namespace SynergicFailureAftermath.Forms
                     Fail = Failures[tmp];
                     Summ += Fail.GetScaleOfFailure();
                     for(int j = 0; j<Fail.GetCriticalLinks().Count;j++)
-                        temp += "{" + $"{Fail.GetCriticalLinks()[j].getIndex()+1}" + "} ";
+                        temp += $"{Fail.GetCriticalLinks()[j].getIndex()+1}";
                 }
-                Result result = new Result(Results.Count, temp, Summ);
+                Result result = new Result(Results.Count, "{ "+temp+" }", Summ);
                 Results.Add(result);
                 UpdateResultsGrid();
                 UpdateLists();
@@ -138,7 +138,9 @@ namespace SynergicFailureAftermath.Forms
                 foreach(Failure Fail in Failures) {
                     if (Fail.GetCriticalLinks().Count == Graph.GetCriticalLinksCount())
                     {
-                        failure = Fail; break;//C(F)
+                        failure = Fail;;//C(F)
+                        Failures.Remove(Fail);
+                        break;
                     }
                 }
                 int max = 0;
