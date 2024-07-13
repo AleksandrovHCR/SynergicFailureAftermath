@@ -116,7 +116,8 @@ namespace SynergicFailureAftermath.Forms
                     int tmp = Int32.Parse(CalculatableNotes.Items[i].ToString()) - 1;
                     Fail = Failures[tmp];
                     Summ += Fail.GetScaleOfFailure();
-                    temp += "{" + $"{Fail.GetCritical()}" + "} ";
+                    for(int j = 0; j<Fail.GetCriticalLinks().Count;j++)
+                        temp += "{" + $"{Fail.GetCriticalLinks()[j].getIndex()+1}" + "} ";
                 }
                 Result result = new Result(Results.Count, temp, Summ);
                 Results.Add(result);
