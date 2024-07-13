@@ -34,24 +34,26 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.FinalCalculate = new System.Windows.Forms.Button();
+            this.Calculation = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.RemoveFromSumm = new System.Windows.Forms.Button();
             this.CalculatableNotes = new System.Windows.Forms.ListBox();
             this.AddToSumm = new System.Windows.Forms.Button();
             this.SelectableNotes = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ResultLog = new System.Windows.Forms.DataGridView();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Calculation = new System.Windows.Forms.Button();
-            this.FinalCalculate = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.SFA_Result = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FailureLog)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ResultLog)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -105,6 +107,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.SFA_Result);
+            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.FinalCalculate);
             this.groupBox2.Controls.Add(this.Calculation);
             this.groupBox2.Controls.Add(this.label2);
@@ -120,6 +124,44 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Расчёт последствий";
+            // 
+            // FinalCalculate
+            // 
+            this.FinalCalculate.Location = new System.Drawing.Point(13, 242);
+            this.FinalCalculate.Name = "FinalCalculate";
+            this.FinalCalculate.Size = new System.Drawing.Size(353, 23);
+            this.FinalCalculate.TabIndex = 13;
+            this.FinalCalculate.Text = "Рассчитать синергетические последствия отказа";
+            this.FinalCalculate.UseVisualStyleBackColor = true;
+            this.FinalCalculate.Click += new System.EventHandler(this.FinalCalculate_Click);
+            // 
+            // Calculation
+            // 
+            this.Calculation.Location = new System.Drawing.Point(13, 213);
+            this.Calculation.Name = "Calculation";
+            this.Calculation.Size = new System.Drawing.Size(353, 23);
+            this.Calculation.TabIndex = 12;
+            this.Calculation.Text = "Рассчитать последствия";
+            this.Calculation.UseVisualStyleBackColor = true;
+            this.Calculation.Click += new System.EventHandler(this.Calculation_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(243, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 16);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Записи на расчёт:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 16);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Доступные записи:";
             // 
             // RemoveFromSumm
             // 
@@ -160,11 +202,10 @@
             this.SelectableNotes.Name = "SelectableNotes";
             this.SelectableNotes.Size = new System.Drawing.Size(120, 116);
             this.SelectableNotes.TabIndex = 1;
-            this.SelectableNotes.SelectedIndexChanged += new System.EventHandler(this.SelectableNotes_SelectedIndexChanged);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.ResultLog);
             this.groupBox3.Location = new System.Drawing.Point(403, 10);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(447, 410);
@@ -172,20 +213,20 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Результаты";
             // 
-            // dataGridView1
+            // ResultLog
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ResultLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ResultLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
             this.Column5,
             this.Column6});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 21);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(430, 371);
-            this.dataGridView1.TabIndex = 0;
+            this.ResultLog.Location = new System.Drawing.Point(6, 21);
+            this.ResultLog.Name = "ResultLog";
+            this.ResultLog.ReadOnly = true;
+            this.ResultLog.RowHeadersWidth = 51;
+            this.ResultLog.RowTemplate.Height = 24;
+            this.ResultLog.Size = new System.Drawing.Size(430, 371);
+            this.ResultLog.TabIndex = 0;
             // 
             // Column4
             // 
@@ -211,42 +252,22 @@
             this.Column6.ReadOnly = true;
             this.Column6.Width = 125;
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 16);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Доступные записи:";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 280);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(262, 16);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Синергетические последствия отказа:";
             // 
-            // label2
+            // SFA_Result
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(243, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 16);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Записи на расчёт:";
-            // 
-            // Calculation
-            // 
-            this.Calculation.Location = new System.Drawing.Point(13, 213);
-            this.Calculation.Name = "Calculation";
-            this.Calculation.Size = new System.Drawing.Size(353, 23);
-            this.Calculation.TabIndex = 12;
-            this.Calculation.Text = "Рассчитать последствия";
-            this.Calculation.UseVisualStyleBackColor = true;
-            this.Calculation.Click += new System.EventHandler(this.Calculation_Click);
-            // 
-            // FinalCalculate
-            // 
-            this.FinalCalculate.Location = new System.Drawing.Point(13, 242);
-            this.FinalCalculate.Name = "FinalCalculate";
-            this.FinalCalculate.Size = new System.Drawing.Size(353, 23);
-            this.FinalCalculate.TabIndex = 13;
-            this.FinalCalculate.Text = "Рассчитать синергетические последствия отказа";
-            this.FinalCalculate.UseVisualStyleBackColor = true;
+            this.SFA_Result.Location = new System.Drawing.Point(297, 277);
+            this.SFA_Result.Name = "SFA_Result";
+            this.SFA_Result.ReadOnly = true;
+            this.SFA_Result.Size = new System.Drawing.Size(100, 22);
+            this.SFA_Result.TabIndex = 15;
             // 
             // SynergeticFailureAftermatch
             // 
@@ -263,7 +284,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ResultLog)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,7 +299,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox SelectableNotes;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ResultLog;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
@@ -289,5 +310,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Calculation;
         private System.Windows.Forms.Button FinalCalculate;
+        private System.Windows.Forms.TextBox SFA_Result;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -15,6 +15,28 @@ namespace SynergicFailureAftermath.Forms
     {
 
         private List<Failure> Failures;
+        private List<Result> Results;
+        private Graph Graph;
+
+        private bool GetTotalFailure()
+        {
+            foreach(Failure failure in Failures)
+            {
+                if(failure.GetCriticalLinks().Count==Graph.GetCriticalLinksCount())
+                    return true;
+            }
+            return false;
+        }
+
+        private void UpdateResultsGrid() {
+            for(int i = 0;i<Results.Count;i++)
+            {
+                ResultLog.Rows.Add();
+                ResultLog[0, i].Value = Results[i].GetIndex()+1;
+                ResultLog[1, i].Value = Results[i].GetMnojestva();
+                ResultLog[2, i].Value = Results[i].GetScale();
+            }
+        }
 
         private void updateGrid()
         {
@@ -43,25 +65,24 @@ namespace SynergicFailureAftermath.Forms
 
             for(int i = 0; i < Failures.Count; i++)
             {
+                if(Failures[i].GetCriticalLinks().Count!=Graph.GetCriticalLinksCount())
                 SelectableNotes.Items.Add(Failures[i].GetIndex()+1);
             }
 
         }
 
 
-        public SynergeticFailureAftermatch(List<Failure> failures)
+        public SynergeticFailureAftermatch(List<Failure> failures,Graph Graph)
         {
             InitializeComponent();
             Failures = failures;
+            this.Graph = Graph;
             updateGrid();
             UpdateLists();
-
+            Results=new List<Result>() { };
         }
 
-        private void SelectableNotes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private void AddToSumm_Click(object sender, EventArgs e)
         {
@@ -84,7 +105,53 @@ namespace SynergicFailureAftermath.Forms
 
         private void Calculation_Click(object sender, EventArgs e)
         {
+            if (CalculatableNotes.Items != null)
+            {
+                int Summ = 0;
+                string temp = "";
+                for (int i = 0; i < CalculatableNotes.Items.Count; i++)
+                {
+                    //Failure Fail = Failures[Int32.Parse(CalculatableNotes.Items[i].ToString())-1]);
+                    Failure Fail;
+                    int tmp = Int32.Parse(CalculatableNotes.Items[i].ToString()) - 1;
+                    Fail = Failures[tmp];
+                    Summ += Fail.GetScaleOfFailure();
+                    temp += "{" + $"{Fail.GetCritical()}" + "} ";
+                }
+                Result result = new Result(Results.Count, temp, Summ);
+                Results.Add(result);
+                UpdateResultsGrid();
+                UpdateLists();
+            }
+            else
+            {
+                MessageBox.Show("Записи для вычислений не выбраны.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
 
+        private void FinalCalculate_Click(object sender, EventArgs e)
+        {
+            if (ResultLog != null && GetTotalFailure())
+            {
+                Failure failure = null;
+                foreach(Failure Fail in Failures) {
+                    if (Fail.GetCriticalLinks().Count == Graph.GetCriticalLinksCount())
+                    {
+                        failure = Fail; break;//C(F)
+                    }
+                }
+                int max = 0;
+                foreach (Failure Fail in Failures)
+                {
+                    if(Fail.GetScaleOfFailure() > max) max= Fail.GetScaleOfFailure();
+                }
+                SFA_Result.Text = $"{failure.GetScaleOfFailure() - max}";
+                MessageBox.Show($"Расчёты завершены. Результат поиска синергетических последствий отказа: {failure.GetScaleOfFailure() - max} ", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); ; ;
+            }
+            else
+            {
+                MessageBox.Show("Список результатов пуст или не рассчитаны последствия полного отказа.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

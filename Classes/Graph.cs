@@ -67,6 +67,16 @@ namespace SynergicFailureAftermath.Classes
             }
             return BLinks;
         }
+        public int GetCriticalLinksCount()
+        {
+            int i = 0;
+            foreach (Link link in All_Links)
+            {
+                if (link.GetLinkType() == 4)
+                    i++;
+            }
+            return i;
+        }
 
     }
 }

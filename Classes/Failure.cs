@@ -30,6 +30,18 @@ namespace SynergicFailureAftermath.Classes
         public int GetIndex() =>Index;
         public int GetScaleOfFailure() =>ScaleOfFailure.Count;
         public Link GetBreaked(int Index) => ScaleOfFailure[Index];
+        public string GetCritical()
+        {
+            string Str="";
+            foreach (Link link in ScaleOfFailure)
+            {
+                if (link.GetLinkType() == 4)
+                {
+                    Str += $"{link.getIndex()-1}; ";
+                }
+            }
+            return Str;
+        }
 
     }
 }

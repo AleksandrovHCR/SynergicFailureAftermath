@@ -156,7 +156,7 @@ namespace SynergicFailureAftermath.Forms
 
         private void расчитатьПоследствияОтказовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SynergeticFailureAftermatch synergeticFailureAftermatch = new SynergeticFailureAftermatch(FailureLog);
+            SynergeticFailureAftermatch synergeticFailureAftermatch = new SynergeticFailureAftermatch(FailureLog,Graph);
             synergeticFailureAftermatch.ShowDialog();
         }
     }
