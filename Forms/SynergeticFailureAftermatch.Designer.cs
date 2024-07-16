@@ -34,6 +34,8 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SFA_Result = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.FinalCalculate = new System.Windows.Forms.Button();
             this.Calculation = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,8 +49,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label3 = new System.Windows.Forms.Label();
-            this.SFA_Result = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FailureLog)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -125,9 +125,28 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Расчёт последствий";
             // 
+            // SFA_Result
+            // 
+            this.SFA_Result.Location = new System.Drawing.Point(297, 396);
+            this.SFA_Result.Name = "SFA_Result";
+            this.SFA_Result.ReadOnly = true;
+            this.SFA_Result.Size = new System.Drawing.Size(100, 22);
+            this.SFA_Result.TabIndex = 15;
+            this.SFA_Result.TextChanged += new System.EventHandler(this.SFA_Result_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 399);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(262, 16);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Синергетические последствия отказа:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // FinalCalculate
             // 
-            this.FinalCalculate.Location = new System.Drawing.Point(13, 242);
+            this.FinalCalculate.Location = new System.Drawing.Point(13, 361);
             this.FinalCalculate.Name = "FinalCalculate";
             this.FinalCalculate.Size = new System.Drawing.Size(353, 23);
             this.FinalCalculate.TabIndex = 13;
@@ -137,7 +156,7 @@
             // 
             // Calculation
             // 
-            this.Calculation.Location = new System.Drawing.Point(13, 213);
+            this.Calculation.Location = new System.Drawing.Point(13, 332);
             this.Calculation.Name = "Calculation";
             this.Calculation.Size = new System.Drawing.Size(353, 23);
             this.Calculation.TabIndex = 12;
@@ -148,7 +167,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(243, 72);
+            this.label2.Location = new System.Drawing.Point(245, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 16);
             this.label2.TabIndex = 11;
@@ -157,7 +176,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 72);
+            this.label1.Location = new System.Drawing.Point(12, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 16);
             this.label1.TabIndex = 10;
@@ -165,7 +184,7 @@
             // 
             // RemoveFromSumm
             // 
-            this.RemoveFromSumm.Location = new System.Drawing.Point(139, 130);
+            this.RemoveFromSumm.Location = new System.Drawing.Point(141, 74);
             this.RemoveFromSumm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RemoveFromSumm.Name = "RemoveFromSumm";
             this.RemoveFromSumm.Size = new System.Drawing.Size(101, 23);
@@ -178,14 +197,14 @@
             // 
             this.CalculatableNotes.FormattingEnabled = true;
             this.CalculatableNotes.ItemHeight = 16;
-            this.CalculatableNotes.Location = new System.Drawing.Point(246, 91);
+            this.CalculatableNotes.Location = new System.Drawing.Point(248, 35);
             this.CalculatableNotes.Name = "CalculatableNotes";
-            this.CalculatableNotes.Size = new System.Drawing.Size(120, 116);
+            this.CalculatableNotes.Size = new System.Drawing.Size(120, 292);
             this.CalculatableNotes.TabIndex = 2;
             // 
             // AddToSumm
             // 
-            this.AddToSumm.Location = new System.Drawing.Point(139, 100);
+            this.AddToSumm.Location = new System.Drawing.Point(141, 44);
             this.AddToSumm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddToSumm.Name = "AddToSumm";
             this.AddToSumm.Size = new System.Drawing.Size(101, 23);
@@ -198,9 +217,9 @@
             // 
             this.SelectableNotes.FormattingEnabled = true;
             this.SelectableNotes.ItemHeight = 16;
-            this.SelectableNotes.Location = new System.Drawing.Point(13, 91);
+            this.SelectableNotes.Location = new System.Drawing.Point(15, 35);
             this.SelectableNotes.Name = "SelectableNotes";
-            this.SelectableNotes.Size = new System.Drawing.Size(120, 116);
+            this.SelectableNotes.Size = new System.Drawing.Size(120, 292);
             this.SelectableNotes.TabIndex = 1;
             // 
             // groupBox3
@@ -251,23 +270,6 @@
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             this.Column6.Width = 125;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 280);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(262, 16);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Синергетические последствия отказа:";
-            // 
-            // SFA_Result
-            // 
-            this.SFA_Result.Location = new System.Drawing.Point(297, 277);
-            this.SFA_Result.Name = "SFA_Result";
-            this.SFA_Result.ReadOnly = true;
-            this.SFA_Result.Size = new System.Drawing.Size(100, 22);
-            this.SFA_Result.TabIndex = 15;
             // 
             // SynergeticFailureAftermatch
             // 

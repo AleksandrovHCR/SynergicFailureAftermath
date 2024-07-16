@@ -105,6 +105,7 @@ namespace SynergicFailureAftermath
             Graph_datagrid.Columns.Clear();
             StartButton.Enabled = true;
             Graph_datagrid.ReadOnly = true;
+            добавитьУзелToolStripMenuItem.Enabled = false;
             LinkManager.Enabled = false;
             ModellingButton.Enabled = false;
             удалитьузелToolStripMenuItem.Enabled = false;
@@ -145,6 +146,9 @@ namespace SynergicFailureAftermath
             {
                 if (OpenFile.FileName != null)
                 {
+                    Main_Graph=new Graph();
+                    Graph_datagrid.Rows.Clear();
+                    Graph_datagrid.Columns.Clear();
                     StreamReader SMistral = new StreamReader(OpenFile.FileName);
                     Main_Graph.ReadFileFromWindows(SMistral,this);
                    // DataGridUpd();

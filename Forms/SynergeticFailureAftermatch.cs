@@ -116,7 +116,7 @@ namespace SynergicFailureAftermath.Forms
                     int tmp = Int32.Parse(CalculatableNotes.Items[i].ToString()) - 1;
                     Fail = Failures[tmp];
                     Summ += Fail.GetScaleOfFailure();
-                    for(int j = 0; j<Fail.GetCriticalLinks().Count;j++)//To do. Доработать отображение результатов
+                    //for(int j = 0; j<Fail.GetCriticalLinks().Count;j++)//To do. Доработать отображение результатов
                         temp +=Fail.GCL_string()+' ';
                 }
                 Result result = new Result(Results.Count,  temp , Summ);
@@ -155,6 +155,16 @@ namespace SynergicFailureAftermath.Forms
             {
                 MessageBox.Show("Список результатов пуст или не рассчитаны последствия полного отказа.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SFA_Result_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
