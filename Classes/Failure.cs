@@ -40,6 +40,16 @@ namespace SynergicFailureAftermath.Classes
         }
         public Link GetBreaked(int Index) => ScaleOfFailure[Index];
 
+        public string GCL_string()
+        {
+            string temp = null;
+            foreach (Link link in ScaleOfFailure)
+            {
+                if (link.GetLinkType()==4)
+                temp += $"{link.getIndex() + 1};";
+            }
+            return '{' + temp + '}';
+        }
 
     }
 }

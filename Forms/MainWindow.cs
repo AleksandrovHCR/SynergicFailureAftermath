@@ -3,6 +3,7 @@ using SynergicFailureAftermath.Classes;
 using System;
 using System.Windows.Forms;
 using System.Runtime.Remoting.Messaging;
+using System.IO;
 
 
 namespace SynergicFailureAftermath
@@ -14,8 +15,10 @@ namespace SynergicFailureAftermath
 
         //private delegate void WindowLiveReaction();
 
-        private void DataGridUpd()
+        private void DataGridUpd()//To do. Доработать
         {
+            Graph_datagrid.ColumnCount = Main_Graph.GetNLinks()+1;
+            Graph_datagrid.RowCount = Main_Graph.GetNLinks();
             for (int i = 1; i < Graph_datagrid.Columns.Count; i++)
             {
                 Link G = Main_Graph.GetLink(i - 1);
@@ -79,6 +82,9 @@ namespace SynergicFailureAftermath
             Graph_datagrid.ReadOnly = true;
             LinkManager.Enabled = true;
             ModellingButton.Enabled = true;
+            удалитьузелToolStripMenuItem.Enabled=true;
+            выходToolStripMenuItem.Enabled = true;
+            загрузитьГрафToolStripMenuItem.Enabled=true;
         }
 
         private void LinkManager_Click(object sender, EventArgs e)
@@ -93,13 +99,59 @@ namespace SynergicFailureAftermath
             modelling.ShowDialog();
         }
         
-        private void удалитьузелToolStripMenuItem_Click(object sender, EventArgs e)//To do. Починить
+        private void удалитьузелToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(Main_Graph.GetNLinks() > 0)
+            Graph_datagrid.Rows.Clear();
+            Graph_datagrid.Columns.Clear();
+            StartButton.Enabled = true;
+            Graph_datagrid.ReadOnly = true;
+            LinkManager.Enabled = false;
+            ModellingButton.Enabled = false;
+            удалитьузелToolStripMenuItem.Enabled = false;
+            выходToolStripMenuItem.Enabled = false;
+            загрузитьГрафToolStripMenuItem.Enabled = false;
+            MessageBox.Show("Граф удалён.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //Graph *G=new Graph();
+
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)//Запись графа в файл
+        {
+            if (Main_Graph.GetNLinks() == 0)
             {
-                Main_Graph.RemoveLink(Main_Graph.GetNLinks());
+                MessageBox.Show("Граф пуст.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           DataGridUpd();
+            else
+            {
+                
+                Savefile = new SaveFileDialog();
+                Savefile.Filter= "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                Savefile.FilterIndex = 1; 
+                if (Savefile.ShowDialog() == DialogResult.OK)
+                {
+                    StreamWriter ACollins = new StreamWriter(Savefile.FileName);
+                    Main_Graph.RecordFileToWindows(ACollins);
+                }
+                }
+            
+        }
+
+        private void загрузитьГрафToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFile=new OpenFileDialog();
+            OpenFile.Filter= "txt files (*.txt)|*.txt";
+            OpenFile.FilterIndex = 1;
+            if(OpenFile.ShowDialog() == DialogResult.OK)
+            {
+                if (OpenFile.FileName != null)
+                {
+                    StreamReader SMistral = new StreamReader(OpenFile.FileName);
+                    Main_Graph.ReadFileFromWindows(SMistral,this);
+                   // DataGridUpd();
+                  //  AddLink AddLinkForm = new AddLink(Main_Graph, this);
+                 //   AddLinkForm.DataGridUpd();
+                }
+            }
         }
     }
 }

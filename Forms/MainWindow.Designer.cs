@@ -41,6 +41,9 @@
             this.Graph_box = new System.Windows.Forms.GroupBox();
             this.Graph_datagrid = new System.Windows.Forms.DataGridView();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Savefile = new System.Windows.Forms.SaveFileDialog();
+            this.загрузитьГрафToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.Graph_box.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Graph_datagrid)).BeginInit();
@@ -57,7 +60,7 @@
             this.AboutButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1009, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1009, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -67,7 +70,7 @@
             this.StartButton.Image = ((System.Drawing.Image)(resources.GetObject("StartButton.Image")));
             this.StartButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(29, 28);
+            this.StartButton.Size = new System.Drawing.Size(29, 24);
             this.StartButton.Text = "Начать работу";
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
@@ -77,11 +80,12 @@
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавитьУзелToolStripMenuItem,
             this.удалитьузелToolStripMenuItem,
-            this.выходToolStripMenuItem});
+            this.выходToolStripMenuItem,
+            this.загрузитьГрафToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(34, 28);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(34, 24);
             this.toolStripDropDownButton1.Text = "Программа";
             // 
             // добавитьУзелToolStripMenuItem
@@ -97,14 +101,16 @@
             this.удалитьузелToolStripMenuItem.Enabled = false;
             this.удалитьузелToolStripMenuItem.Name = "удалитьузелToolStripMenuItem";
             this.удалитьузелToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.удалитьузелToolStripMenuItem.Text = "Удалить узел";
+            this.удалитьузелToolStripMenuItem.Text = "Очистить";
             this.удалитьузелToolStripMenuItem.Click += new System.EventHandler(this.удалитьузелToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
+            this.выходToolStripMenuItem.Enabled = false;
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
             this.выходToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.выходToolStripMenuItem.Text = "Выход";
+            this.выходToolStripMenuItem.Text = "Сохранить граф";
+            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // LinkManager
             // 
@@ -175,6 +181,18 @@
             this.NameColumn.ReadOnly = true;
             this.NameColumn.Width = 20;
             // 
+            // загрузитьГрафToolStripMenuItem
+            // 
+            this.загрузитьГрафToolStripMenuItem.Enabled = false;
+            this.загрузитьГрафToolStripMenuItem.Name = "загрузитьГрафToolStripMenuItem";
+            this.загрузитьГрафToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.загрузитьГрафToolStripMenuItem.Text = "Загрузить граф";
+            this.загрузитьГрафToolStripMenuItem.Click += new System.EventHandler(this.загрузитьГрафToolStripMenuItem_Click);
+            // 
+            // OpenFile
+            // 
+            this.OpenFile.FileName = "openFileDialog1";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -213,6 +231,9 @@
         public System.Windows.Forms.DataGridView Graph_datagrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.ToolStripButton ModellingButton;
+        private System.Windows.Forms.SaveFileDialog Savefile;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьГрафToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog OpenFile;
     }
 }
 

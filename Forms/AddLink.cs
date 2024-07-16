@@ -29,7 +29,7 @@ namespace SynergicFailureAftermath
             InfoLabel.Text = $"Количество узлов: {GRPH.GetNLinks()}";
         }//$"Количество узлов:{GRPH.GetNLinks()}";
 
-        private void DataGridUpd()
+        public void DataGridUpd()
         {
            
             MainWindow.Graph_datagrid.ColumnCount = GRPH.GetNLinks()+1;
