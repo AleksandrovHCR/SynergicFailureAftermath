@@ -35,6 +35,7 @@
             this.добавитьУзелToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьузелToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьГрафToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LinkManager = new System.Windows.Forms.ToolStripButton();
             this.ModellingButton = new System.Windows.Forms.ToolStripButton();
             this.AboutButton = new System.Windows.Forms.ToolStripButton();
@@ -42,7 +43,6 @@
             this.Graph_datagrid = new System.Windows.Forms.DataGridView();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Savefile = new System.Windows.Forms.SaveFileDialog();
-            this.загрузитьГрафToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.Graph_box.SuspendLayout();
@@ -112,6 +112,14 @@
             this.выходToolStripMenuItem.Text = "Сохранить граф";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
+            // загрузитьГрафToolStripMenuItem
+            // 
+            this.загрузитьГрафToolStripMenuItem.Enabled = false;
+            this.загрузитьГрафToolStripMenuItem.Name = "загрузитьГрафToolStripMenuItem";
+            this.загрузитьГрафToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.загрузитьГрафToolStripMenuItem.Text = "Загрузить граф";
+            this.загрузитьГрафToolStripMenuItem.Click += new System.EventHandler(this.загрузитьГрафToolStripMenuItem_Click);
+            // 
             // LinkManager
             // 
             this.LinkManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -119,7 +127,7 @@
             this.LinkManager.Image = ((System.Drawing.Image)(resources.GetObject("LinkManager.Image")));
             this.LinkManager.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LinkManager.Name = "LinkManager";
-            this.LinkManager.Size = new System.Drawing.Size(29, 28);
+            this.LinkManager.Size = new System.Drawing.Size(29, 24);
             this.LinkManager.Text = "Диспетчер узлов";
             this.LinkManager.Click += new System.EventHandler(this.LinkManager_Click);
             // 
@@ -130,7 +138,7 @@
             this.ModellingButton.Image = ((System.Drawing.Image)(resources.GetObject("ModellingButton.Image")));
             this.ModellingButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ModellingButton.Name = "ModellingButton";
-            this.ModellingButton.Size = new System.Drawing.Size(29, 28);
+            this.ModellingButton.Size = new System.Drawing.Size(29, 24);
             this.ModellingButton.Text = "Моделирование работы системы";
             this.ModellingButton.Click += new System.EventHandler(this.ModellingButton_Click);
             // 
@@ -140,7 +148,7 @@
             this.AboutButton.Image = ((System.Drawing.Image)(resources.GetObject("AboutButton.Image")));
             this.AboutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AboutButton.Name = "AboutButton";
-            this.AboutButton.Size = new System.Drawing.Size(29, 28);
+            this.AboutButton.Size = new System.Drawing.Size(29, 24);
             this.AboutButton.Text = "О программе";
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
@@ -181,14 +189,6 @@
             this.NameColumn.ReadOnly = true;
             this.NameColumn.Width = 20;
             // 
-            // загрузитьГрафToolStripMenuItem
-            // 
-            this.загрузитьГрафToolStripMenuItem.Enabled = false;
-            this.загрузитьГрафToolStripMenuItem.Name = "загрузитьГрафToolStripMenuItem";
-            this.загрузитьГрафToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.загрузитьГрафToolStripMenuItem.Text = "Загрузить граф";
-            this.загрузитьГрафToolStripMenuItem.Click += new System.EventHandler(this.загрузитьГрафToolStripMenuItem_Click);
-            // 
             // OpenFile
             // 
             this.OpenFile.FileName = "openFileDialog1";
@@ -207,7 +207,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
             this.Name = "MainWindow";
-            this.Text = "Синергитические последствия отказа";
+            this.Text = "Синергетические последствия отказа";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.Graph_box.ResumeLayout(false);

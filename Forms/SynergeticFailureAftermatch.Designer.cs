@@ -132,7 +132,7 @@
             this.SFA_Result.ReadOnly = true;
             this.SFA_Result.Size = new System.Drawing.Size(100, 22);
             this.SFA_Result.TabIndex = 15;
-            this.SFA_Result.TextChanged += new System.EventHandler(this.SFA_Result_TextChanged);
+            
             // 
             // label3
             // 
@@ -142,7 +142,7 @@
             this.label3.Size = new System.Drawing.Size(262, 16);
             this.label3.TabIndex = 14;
             this.label3.Text = "Синергетические последствия отказа:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            
             // 
             // FinalCalculate
             // 

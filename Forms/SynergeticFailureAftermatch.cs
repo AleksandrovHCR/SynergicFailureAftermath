@@ -111,12 +111,12 @@ namespace SynergicFailureAftermath.Forms
                 string temp = "";
                 for (int i = 0; i < CalculatableNotes.Items.Count; i++)
                 {
-                    //Failure Fail = Failures[Int32.Parse(CalculatableNotes.Items[i].ToString())-1]);
+                   
                     Failure Fail;
                     int tmp = Int32.Parse(CalculatableNotes.Items[i].ToString()) - 1;
                     Fail = Failures[tmp];
                     Summ += Fail.GetScaleOfFailure();
-                    //for(int j = 0; j<Fail.GetCriticalLinks().Count;j++)//To do. Доработать отображение результатов
+                    
                         temp +=Fail.GCL_string()+' ';
                 }
                 Result result = new Result(Results.Count,  temp , Summ);
@@ -157,14 +157,6 @@ namespace SynergicFailureAftermath.Forms
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SFA_Result_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
