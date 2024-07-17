@@ -121,8 +121,12 @@ namespace SynergicFailureAftermath.Forms
             _powerPlant.Invoke();
             if (BrokenCheck())
             {
-                Failure failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks());
-                if(!FailureLog.Contains(failure))
+                Failure failure;
+                if (Critical_working.Items.Count==0)
+                    failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(),true);
+                else
+                    failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), false);
+                if (!FailureLog.Contains(failure))
                 FailureLog.Add(failure);
             }
             StartModelling.Enabled = false;

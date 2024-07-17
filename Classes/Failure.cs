@@ -8,11 +8,13 @@ namespace SynergicFailureAftermath.Classes
     {
         private int Index;
         private List<Link> ScaleOfFailure;//Вышедшие из строя узлы
+        private bool IsTotal = false;
 
-        public Failure(int index, List<Link> scaleOfFalure)
+        public Failure(int index, List<Link> scaleOfFalure, bool IsTotal)
         {
             Index = index;
             ScaleOfFailure = scaleOfFalure;
+            this.IsTotal = IsTotal;
         }
         
         public List<Link> GetCriticalLinks()
@@ -21,6 +23,17 @@ namespace SynergicFailureAftermath.Classes
             foreach (Link link in ScaleOfFailure)
             {
                 if (link.GetLinkType()==4)
+                    temp.Add(link);
+            }
+            return temp;
+        }
+        public bool IsTotalFailure()=>IsTotal;
+        public List<Link> GetConsumers()
+        {
+            List<Link> temp = new List<Link>();
+            foreach (Link link in ScaleOfFailure)
+            {
+                if (link.GetLinkType() == 3)
                     temp.Add(link);
             }
             return temp;

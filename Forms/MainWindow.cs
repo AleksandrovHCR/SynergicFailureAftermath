@@ -130,8 +130,8 @@ namespace SynergicFailureAftermath
                 Savefile.FilterIndex = 1; 
                 if (Savefile.ShowDialog() == DialogResult.OK)
                 {
-                    StreamWriter ACollins = new StreamWriter(Savefile.FileName);
-                    Main_Graph.RecordFileToWindows(ACollins);
+                    StreamWriter AC = new StreamWriter(Savefile.FileName);
+                    Main_Graph.RecordFileToWindows(AC);
                 }
                 }
             
@@ -149,8 +149,8 @@ namespace SynergicFailureAftermath
                     Main_Graph=new Graph();
                     Graph_datagrid.Rows.Clear();
                     Graph_datagrid.Columns.Clear();
-                    StreamReader SMistral = new StreamReader(OpenFile.FileName);
-                    Main_Graph.ReadFileFromWindows(SMistral,this);
+                    StreamReader SM = new StreamReader(OpenFile.FileName);
+                    Main_Graph.ReadFileFromWindows(SM,this);
                    // DataGridUpd();
                   //  AddLink AddLinkForm = new AddLink(Main_Graph, this);
                  //   AddLinkForm.DataGridUpd();

@@ -52,8 +52,15 @@ namespace SynergicFailureAftermath.Forms
                 }
                 FailureLog[1, i].Value = temp;
                 temp = null;
-                for (int j = 0; j < Failures[i].GetScaleOfFailure(); j++)
-                    temp += $"{Failures[i].GetBreaked(j).getIndex()+1}; ";
+                //for (int j = 0; j < Failures[i].GetScaleOfFailure(); j++)
+                //{
+                //    if (Failures[i].GetBreaked(j).GetLinkType()==3)
+                //        temp += $"{Failures[i].GetBreaked(j).getIndex() + 1}; ";
+                //}
+                foreach(Link link in Failures[i].GetConsumers())
+                {
+                    temp += $"{link.getIndex()+1}; ";
+                }
                 FailureLog[2,i].Value = temp;
             }
         }
@@ -130,13 +137,13 @@ namespace SynergicFailureAftermath.Forms
             }
         }
 
-        private void FinalCalculate_Click(object sender, EventArgs e)
+        private void FinalCalculate_Click(object sender, EventArgs e)//Repair me
         {
             if (ResultLog != null && GetTotalFailure())
             {
                 Failure failure = null;
                 foreach(Failure Fail in Failures) {
-                    if (Fail.GetCriticalLinks().Count == Graph.GetCriticalLinksCount())
+                    if (Fail.IsTotalFailure())
                     {
                         failure = Fail;;//C(F)
                         Failures.Remove(Fail);
@@ -144,11 +151,16 @@ namespace SynergicFailureAftermath.Forms
                     }
                 }
                 int max = 0;
-                foreach (Failure Fail in Failures)
+                //foreach (Failure Fail in Failures)
+                //{
+                //    if(Fail.GetScaleOfFailure() > max) max= Fail.GetScaleOfFailure();
+                //}
+                foreach(Result result in Results)
                 {
-                    if(Fail.GetScaleOfFailure() > max) max= Fail.GetScaleOfFailure();
+                    if(result.GetScale()>max)max = result.GetScale();
                 }
                 SFA_Result.Text = $"{failure.GetScaleOfFailure() - max}";
+                Failures.Add(failure);
                 MessageBox.Show($"Расчёты завершены. Результат поиска синергетических последствий отказа: {failure.GetScaleOfFailure() - max} ", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); ; ;
             }
             else
