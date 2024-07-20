@@ -137,9 +137,9 @@ namespace SynergicFailureAftermath.Forms
             }
         }
 
-        private void FinalCalculate_Click(object sender, EventArgs e)//Repair me
+        private void FinalCalculate_Click(object sender, EventArgs e)
         {
-            if (ResultLog != null && GetTotalFailure())
+            if (ResultLog != null && GetTotalFailure() && Results.Count>0)
             {
                 Failure failure = null;
                 foreach(Failure Fail in Failures) {

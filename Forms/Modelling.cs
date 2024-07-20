@@ -90,30 +90,6 @@ namespace SynergicFailureAftermath.Forms
         }
 
 
-        private List<HashSet<T>> GetSubsets<T>(HashSet<T> set)
-        {
-            var subsets = new List<HashSet<T>>();
-            foreach (var element in set)
-            {
-                var newSubsets = new List<HashSet<T>>();
-                foreach (var subset in subsets)
-                {
-                    var newSubset = new HashSet<T>(subset);
-                    newSubset.Add(element);
-                    newSubsets.Add(newSubset);
-                }
-                subsets.AddRange(newSubsets);
-
-                var newSubsetWithElement = new HashSet<T>();
-                newSubsetWithElement.Add(element);
-                subsets.Add(newSubsetWithElement);
-            }
-            return subsets;
-        }
-
-
-
-
 
     public Modelling(Graph Graph)
         {
@@ -146,18 +122,62 @@ namespace SynergicFailureAftermath.Forms
 
         private void StartModelling_Click(object sender, EventArgs e)
         {
-            _powerPlant.Invoke();
-            if (BrokenCheck())
+            if (UseSubsets.Checked == false)
             {
-                Failure failure;
-                if (Critical_working.Items.Count==0)
-                    failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(),true);
-                else
-                    failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), false);
-                if (!FailureLog.Contains(failure))
-                FailureLog.Add(failure);
-            }
+                _powerPlant.Invoke();
+                if (BrokenCheck())
+                {
+                    Failure failure;
+                    if (Critical_working.Items.Count == 0)
+                        failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), true);
+                    else
+                        failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), false);
+                    if (!FailureLog.Contains(failure))
+                        FailureLog.Add(failure);
+                } 
             StartModelling.Enabled = false;
+            UseSubsets.Enabled = false;
+            }
+            else
+            {
+                if (Subsets == null)
+                {
+                    MessageBox.Show("Разбиение на подмножества не проведено.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    
+                    foreach(Subset subset in Subsets)
+                    {
+                        HashSet<int> BrokenLinks=subset.GetItems();
+                        foreach(int BrokenLink in BrokenLinks)
+                        {
+                            Graph.GetLink(BrokenLink).SetLinkInstance(3);
+                        }
+                        _powerPlant.Invoke();
+                        if (BrokenCheck())
+                        {
+                            Failure failure;
+                            if (BrokenLinks.Count==Graph.GetCriticalLinksCount())
+                                failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), true);
+                            else
+                                failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), false);
+                            if (!FailureLog.Contains(failure))
+                                FailureLog.Add(failure);
+                        }
+                        for (int i = 0; i < Graph.GetNLinks(); i++)
+                        {
+
+                            Graph.GetLink(i).SetLinkInstance(2);
+                        }
+                    }
+
+                    UpdateDatagrid();
+                    StartModelling.Enabled = false;
+                    UseSubsets.Enabled = false;
+                }
+            }
+           
         }
 
         private void CancelModelling_Click(object sender, EventArgs e)
@@ -170,6 +190,7 @@ namespace SynergicFailureAftermath.Forms
             UpdateDatagrid();
             UpdateCLinkLists();
             StartModelling.Enabled=true;
+            UseSubsets.Enabled=true;
         }
 
         private void BreakLink_Click(object sender, EventArgs e)
@@ -198,6 +219,22 @@ namespace SynergicFailureAftermath.Forms
             Subsets = new List<Subset>() { };
             BreakOnSubsets breakOnSubsets=new BreakOnSubsets(Subsets,Graph.GetCriticalIndexs());
             breakOnSubsets.ShowDialog();
+        }
+
+        private void UseSubsets_CheckedChanged(object sender, EventArgs e)
+        {
+            if(UseSubsets.Checked == true)
+            {
+                RandomCrit.Enabled = false;
+                CancelModelling.Enabled = false;
+                if(Subsets==null || Subsets.Count==0)
+                    StartModelling.Enabled = false;
+            }
+            else {
+                RandomCrit.Enabled = true;
+                CancelModelling.Enabled = true;
+                StartModelling.Enabled = true ;
+            }
         }
     }
 }

@@ -95,19 +95,19 @@ namespace SynergicFailureAftermath.Classes
             return temp;
         }
 
-        public void RecordFileToWindows(StreamWriter AmyCollins)
+        public void RecordFileToWindows(StreamWriter Writer1)
         {
             foreach (Link link in All_Links)
             { 
-                string BorisVyacheslavovichSilver=null;
-                BorisVyacheslavovichSilver += link.getIndex().ToString()+" ";
-                BorisVyacheslavovichSilver += link.GetLinkType().ToString()+" ";
+                string ReadBuffer=null;
+                ReadBuffer += link.getIndex().ToString()+" ";
+                ReadBuffer += link.GetLinkType().ToString()+" ";
                 for (int i = 0;i< link.GetLinks();i++) {
-                    BorisVyacheslavovichSilver+=link.GetConnectedLink(i).getIndex().ToString()+" ";
+                    ReadBuffer+=link.GetConnectedLink(i).getIndex().ToString()+" ";
                 }
-                AmyCollins.WriteLine(BorisVyacheslavovichSilver);
+                Writer1.WriteLine(ReadBuffer);
             }
-            AmyCollins.Close();
+            Writer1.Close();
         }
         private void DataGridUpd(MainWindow MW)
         {
@@ -141,26 +141,26 @@ namespace SynergicFailureAftermath.Classes
             }
 
         }
-        public void ReadFileFromWindows(StreamReader SallyMistral, MainWindow MW)
+        public void ReadFileFromWindows(StreamReader Reader1, MainWindow MW)
         {
             try { 
-            while (!SallyMistral.EndOfStream)
+            while (!Reader1.EndOfStream)
             {
-                string SundownerKnuckles = SallyMistral.ReadLine();
-                string[] JetstreamTails = SundownerKnuckles.Split(' ');
-                Link link = new Link(Int32.Parse(JetstreamTails[0]), Int32.Parse(JetstreamTails[1]));
+               
+                string[] Converter = Reader1.ReadLine().Split(' ');
+                Link link = new Link(Int32.Parse(Converter[0]), Int32.Parse(Converter[1]));
                 All_Links.Add(link);
                 DataGridUpd(MW);
             }
-            SallyMistral.BaseStream.Seek(0, SeekOrigin.Begin);
-            while (!SallyMistral.EndOfStream)
+            Reader1.BaseStream.Seek(0, SeekOrigin.Begin);
+            while (!Reader1.EndOfStream)
             {
-                string SundownerKnuckles = SallyMistral.ReadLine();
-                string[] JetstreamTails = SundownerKnuckles.Split(' ');
-                for (int i = 2; i < JetstreamTails.Length - 1; i++)
+                
+                string[] Converter = Reader1.ReadLine().Split(' ');
+                for (int i = 2; i < Converter.Length - 1; i++)
                 {
-                    if (!All_Links[Int32.Parse(JetstreamTails[0])].FindConnectedLink(Int32.Parse((JetstreamTails[i]))))
-                        All_Links[Int32.Parse(JetstreamTails[0])].AddConnectedLink(GetLink(Int32.Parse((JetstreamTails[i]))));
+                    if (!All_Links[Int32.Parse(Converter[0])].FindConnectedLink(Int32.Parse((Converter[i]))))
+                        All_Links[Int32.Parse(Converter[0])].AddConnectedLink(GetLink(Int32.Parse((Converter[i]))));
                 }
             }
             DataGridUpd2(MW);

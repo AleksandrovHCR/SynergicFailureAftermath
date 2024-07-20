@@ -41,7 +41,7 @@
             this.результатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.смоделироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListOfSubsets)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -53,7 +53,7 @@
             this.groupBox1.Controls.Add(this.ListOfSubsets);
             this.groupBox1.Location = new System.Drawing.Point(12, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(350, 409);
+            this.groupBox1.Size = new System.Drawing.Size(417, 413);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Подмножества";
@@ -69,7 +69,7 @@
             this.ListOfSubsets.ReadOnly = true;
             this.ListOfSubsets.RowHeadersWidth = 51;
             this.ListOfSubsets.RowTemplate.Height = 24;
-            this.ListOfSubsets.Size = new System.Drawing.Size(338, 382);
+            this.ListOfSubsets.Size = new System.Drawing.Size(405, 388);
             this.ListOfSubsets.TabIndex = 1;
             // 
             // Column1
@@ -93,7 +93,7 @@
             this.groupBox2.Controls.Add(this.StartTheBreakage);
             this.groupBox2.Controls.Add(this.CLinks);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(376, 29);
+            this.groupBox2.Location = new System.Drawing.Point(435, 33);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(365, 409);
             this.groupBox2.TabIndex = 1;
@@ -131,8 +131,7 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.результатыToolStripMenuItem,
-            this.смоделироватьToolStripMenuItem});
+            this.результатыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
@@ -151,20 +150,20 @@
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // загрузитьToolStripMenuItem
             // 
             this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.загрузитьToolStripMenuItem.Text = "Загрузить";
+            this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 
-            // смоделироватьToolStripMenuItem
+            // OpenFile
             // 
-            this.смоделироватьToolStripMenuItem.Name = "смоделироватьToolStripMenuItem";
-            this.смоделироватьToolStripMenuItem.Size = new System.Drawing.Size(133, 24);
-            this.смоделироватьToolStripMenuItem.Text = "Смоделировать";
+            this.OpenFile.FileName = "OpenFile";
             // 
             // BreakOnSubsets
             // 
@@ -201,9 +200,9 @@
         private System.Windows.Forms.ToolStripMenuItem результатыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem смоделироватьToolStripMenuItem;
         private System.Windows.Forms.Button StartTheBreakage;
         private System.Windows.Forms.TextBox CLinks;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.OpenFileDialog OpenFile;
     }
 }

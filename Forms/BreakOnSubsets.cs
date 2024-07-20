@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SynergicFailureAftermath.Classes;
 
@@ -96,6 +92,114 @@ namespace SynergicFailureAftermath.Forms
             }            
             UpdateResults();
             StartTheBreakage.Enabled = false;
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(Subsets.Count == 0)
+            {
+                MessageBox.Show("Разбиение на подмножества не проведено.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                SaveTheResults = new SaveFileDialog();
+                SaveTheResults.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                SaveTheResults.FilterIndex = 1;
+                if (SaveTheResults.ShowDialog() == DialogResult.OK)
+                {
+                    StreamWriter Writer1 = new StreamWriter(SaveTheResults.FileName);
+                    foreach (var element in Subsets)
+                    {
+                        string Writer2 = null;
+                        foreach (var element1 in element.GetItems())
+                            Writer2 += element1.ToString()+" ";
+                        
+                        Writer1.WriteLine(Writer2);
+                    }
+                    Writer1.Close();
+                }
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var HSet = new HashSet<int>() { };//Для защиты от дурака
+            foreach (var element in Main_Set)
+            {
+                HSet.Add(element);
+            }
+            OpenFile = new OpenFileDialog();
+            OpenFile.Filter = "txt files (*.txt)|*.txt";
+            OpenFile.FilterIndex = 1;
+            if (OpenFile.ShowDialog() == DialogResult.OK)
+            {
+                if (OpenFile.FileName != null && Main_Set.Count!=0)
+                {
+                    ListOfSubsets.Rows.Clear();
+                    StreamReader Reader1 = new StreamReader(OpenFile.FileName);
+                    try
+                    {
+                        int CurrentItem= 0;
+                        while (!Reader1.EndOfStream)
+                        {
+                            
+                            string[] Reader2 = Reader1.ReadLine().Split(' ');
+                            HashSet<int> SetKeep= new HashSet<int>() { };
+                            for(int Index=0;Index<Reader2.Length-1;Index++)
+                            {
+                                SetKeep.Add(Int32.Parse(Reader2[Index]));
+                            }
+                            Subset AddableSubset = new Subset(CurrentItem, SetKeep);
+                            Subsets.Add(AddableSubset);
+                            CurrentItem++;
+                        }
+                        foreach(Subset s in Subsets)
+                        {
+                            if (s.GetItems().Count==HSet.Count)
+                            {
+                                int Equaials = 0;
+                               List<int> Temp1= new List<int>() { };
+                                foreach(int tmp in s.GetItems())
+                                {
+                                    Temp1.Add(tmp);
+                                }
+                               List<int> Temp2 = new List<int>() { };
+                                foreach (int tmp in HSet)
+                                {
+                                    Temp2.Add(tmp);
+                                }
+                                foreach (int tmp in Temp2)
+                                {
+                                    foreach (int tmp2 in Temp1)
+                                    {
+                                        if (Temp1.Contains(tmp2))
+                                        {
+                                            Equaials++;
+                                        }
+                                    }
+                                }
+                                if (Equaials == HSet.Count)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    throw new Exception("Набор разбиений не соответствует графу.");
+                                }
+                            }
+                            
+                        }
+                        
+                        загрузитьToolStripMenuItem.Enabled = false;
+                        UpdateResults();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show($"Файл не может быть прочитан. Сообщение об ошибке: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Subsets.Clear();
+                    }
+                }
+            }
         }
     }
 }
