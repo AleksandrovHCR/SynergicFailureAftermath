@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using static System.Windows.Forms.LinkLabel;
@@ -14,7 +13,7 @@ namespace SynergicFailureAftermath.Classes
     public class Graph
     {
         private List<Link> All_Links;//Все узлы
-      
+        
 
         public Graph() {  All_Links = new List<Link> { }; }
         public int GetNLinks() => All_Links.Count;
@@ -85,19 +84,30 @@ namespace SynergicFailureAftermath.Classes
         }
 
 
-        public void RecordFileToWindows(StreamWriter AC)
+        public List<int> GetCriticalIndexs()
+        {
+            List<int> temp = new List<int>() { };
+            foreach (Link link in All_Links)
+            {
+                if(link.GetLinkType()==4)
+                    temp.Add(link.getIndex());
+            }
+            return temp;
+        }
+
+        public void RecordFileToWindows(StreamWriter AmyCollins)
         {
             foreach (Link link in All_Links)
             { 
-                string BVS=null;
-                BVS += link.getIndex().ToString()+" ";
-                BVS += link.GetLinkType().ToString()+" ";
+                string BorisVyacheslavovichSilver=null;
+                BorisVyacheslavovichSilver += link.getIndex().ToString()+" ";
+                BorisVyacheslavovichSilver += link.GetLinkType().ToString()+" ";
                 for (int i = 0;i< link.GetLinks();i++) {
-                    BVS+=link.GetConnectedLink(i).getIndex().ToString()+" ";
+                    BorisVyacheslavovichSilver+=link.GetConnectedLink(i).getIndex().ToString()+" ";
                 }
-                AC.WriteLine(BVS);
+                AmyCollins.WriteLine(BorisVyacheslavovichSilver);
             }
-            AC.Close();
+            AmyCollins.Close();
         }
         private void DataGridUpd(MainWindow MW)
         {
@@ -131,26 +141,26 @@ namespace SynergicFailureAftermath.Classes
             }
 
         }
-        public void ReadFileFromWindows(StreamReader SM, MainWindow MW)
+        public void ReadFileFromWindows(StreamReader SallyMistral, MainWindow MW)
         {
             try { 
-            while (!SM.EndOfStream)
+            while (!SallyMistral.EndOfStream)
             {
-                string SK = SM.ReadLine();
-                string[] JT = SK.Split(' ');
-                Link link = new Link(Int32.Parse(JT[0]), Int32.Parse(JT[1]));
+                string SundownerKnuckles = SallyMistral.ReadLine();
+                string[] JetstreamTails = SundownerKnuckles.Split(' ');
+                Link link = new Link(Int32.Parse(JetstreamTails[0]), Int32.Parse(JetstreamTails[1]));
                 All_Links.Add(link);
                 DataGridUpd(MW);
             }
-            SM.BaseStream.Seek(0, SeekOrigin.Begin);
-            while (!SM.EndOfStream)
+            SallyMistral.BaseStream.Seek(0, SeekOrigin.Begin);
+            while (!SallyMistral.EndOfStream)
             {
-                string SK = SM.ReadLine();
-                string[] JT = SK.Split(' ');
-                for (int i = 2; i < JT.Length - 1; i++)
+                string SundownerKnuckles = SallyMistral.ReadLine();
+                string[] JetstreamTails = SundownerKnuckles.Split(' ');
+                for (int i = 2; i < JetstreamTails.Length - 1; i++)
                 {
-                    if (!All_Links[Int32.Parse(JT[0])].FindConnectedLink(Int32.Parse((JT[i]))))
-                        All_Links[Int32.Parse(JT[0])].AddConnectedLink(GetLink(Int32.Parse((JT[i]))));
+                    if (!All_Links[Int32.Parse(JetstreamTails[0])].FindConnectedLink(Int32.Parse((JetstreamTails[i]))))
+                        All_Links[Int32.Parse(JetstreamTails[0])].AddConnectedLink(GetLink(Int32.Parse((JetstreamTails[i]))));
                 }
             }
             DataGridUpd2(MW);

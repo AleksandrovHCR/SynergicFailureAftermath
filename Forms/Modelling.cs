@@ -15,6 +15,7 @@ namespace SynergicFailureAftermath.Forms
     {
         private Graph Graph;
         private List<Failure> FailureLog;
+        private List<Subset> Subsets;   
 
         private delegate void PowerPlant();
         private PowerPlant _powerPlant;
@@ -87,7 +88,34 @@ namespace SynergicFailureAftermath.Forms
                 }
             }
         }
-        public Modelling(Graph Graph)
+
+
+        private List<HashSet<T>> GetSubsets<T>(HashSet<T> set)
+        {
+            var subsets = new List<HashSet<T>>();
+            foreach (var element in set)
+            {
+                var newSubsets = new List<HashSet<T>>();
+                foreach (var subset in subsets)
+                {
+                    var newSubset = new HashSet<T>(subset);
+                    newSubset.Add(element);
+                    newSubsets.Add(newSubset);
+                }
+                subsets.AddRange(newSubsets);
+
+                var newSubsetWithElement = new HashSet<T>();
+                newSubsetWithElement.Add(element);
+                subsets.Add(newSubsetWithElement);
+            }
+            return subsets;
+        }
+
+
+
+
+
+    public Modelling(Graph Graph)
         {
             InitializeComponent();
             this.Graph = Graph;
@@ -162,6 +190,14 @@ namespace SynergicFailureAftermath.Forms
         {
             SynergeticFailureAftermatch synergeticFailureAftermatch = new SynergeticFailureAftermatch(FailureLog,Graph);
             synergeticFailureAftermatch.ShowDialog();
+        }
+
+        private void провестиРазбиениеМножестваToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //List<int> temp= new List<int>() { };
+            Subsets = new List<Subset>() { };
+            BreakOnSubsets breakOnSubsets=new BreakOnSubsets(Subsets,Graph.GetCriticalIndexs());
+            breakOnSubsets.ShowDialog();
         }
     }
 }

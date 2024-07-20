@@ -49,6 +49,7 @@
             this.LinkInstanceInstance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.расчитатьПоследствияОтказовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.провестиРазбиениеМножестваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -258,7 +259,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.расчитатьПоследствияОтказовToolStripMenuItem});
+            this.расчитатьПоследствияОтказовToolStripMenuItem,
+            this.провестиРазбиениеМножестваToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(961, 28);
@@ -271,6 +273,13 @@
             this.расчитатьПоследствияОтказовToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.расчитатьПоследствияОтказовToolStripMenuItem.Text = "Расчитать последствия отказов";
             this.расчитатьПоследствияОтказовToolStripMenuItem.Click += new System.EventHandler(this.расчитатьПоследствияОтказовToolStripMenuItem_Click);
+            // 
+            // провестиРазбиениеМножестваToolStripMenuItem
+            // 
+            this.провестиРазбиениеМножестваToolStripMenuItem.Name = "провестиРазбиениеМножестваToolStripMenuItem";
+            this.провестиРазбиениеМножестваToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
+            this.провестиРазбиениеМножестваToolStripMenuItem.Text = "Провести разбиение множества";
+            this.провестиРазбиениеМножестваToolStripMenuItem.Click += new System.EventHandler(this.провестиРазбиениеМножестваToolStripMenuItem_Click);
             // 
             // Modelling
             // 
@@ -320,5 +329,6 @@
         private System.Windows.Forms.Button BreakLink;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem расчитатьПоследствияОтказовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem провестиРазбиениеМножестваToolStripMenuItem;
     }
 }

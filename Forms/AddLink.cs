@@ -31,46 +31,53 @@ namespace SynergicFailureAftermath
 
         public void DataGridUpd()
         {
-           
-            MainWindow.Graph_datagrid.ColumnCount = GRPH.GetNLinks()+1;
-            MainWindow.Graph_datagrid.Columns[GRPH.GetNLinks()].Name= $"{GRPH.GetNLinks()}";
+
+            MainWindow.Graph_datagrid.ColumnCount = GRPH.GetNLinks() + 1;
+            MainWindow.Graph_datagrid.Columns[GRPH.GetNLinks()].Name = $"{GRPH.GetNLinks()}";
             MainWindow.Graph_datagrid.Rows.Add();
-            MainWindow.Graph_datagrid[0,GRPH.GetNLinks()-1].Value=GRPH.GetNLinks();
-            MainWindow.Graph_datagrid[GRPH.GetNLinks(), GRPH.GetNLinks()-1].Value = "-";
+            MainWindow.Graph_datagrid[0, GRPH.GetNLinks() - 1].Value = GRPH.GetNLinks();
+            MainWindow.Graph_datagrid[GRPH.GetNLinks(), GRPH.GetNLinks() - 1].Value = "-";
         }
 
         public AddLink(Graph GRPH1, MainWindow MW)
         {
             InitializeComponent();
             LinkTypeComboBox.Items.AddRange(new string[] { "Обычный", "Источник", "Потребитель", "Критический" });
-            
+
             GRPH = GRPH1;
             MainWindow = MW;
-            LinkAddedInCollection +=new GraphLiveReaction(this.InfoUpd);
+            LinkAddedInCollection += new GraphLiveReaction(this.InfoUpd);
             // LinkAddedInCollection.Invoke($"Количество узлов: ", GRPH.GetNLinks());
             LinkAddedInCollection.Invoke();
             LinkAddedInCollection += DataGridUpd;
         }
-        
 
-        //public AddLink(MainWindow MW)
-        //{
-        //    InitializeComponent();
-        //    LinkTypeComboBox.Items.AddRange(new string[] { "Обычный", "Источник", "Потребитель", "Критический" });
-        //    MainWindow = MW;
-        //}
+
+        private bool CheckTextBox()
+        {
+            if (HowMuchToAdd.Text == null) return false;
+            for (int i = 0; i < HowMuchToAdd.Text.Length; i++)
+            {
+                if (HowMuchToAdd.Text[i] < 48 || HowMuchToAdd.Text[i] > 57)
+                    return false;
+            }
+            if (Int32.Parse(HowMuchToAdd.Text) < 0 || Int32.Parse(HowMuchToAdd.Text)>654) return false;
+            return true;
+        }
         private void AddNewLink_Click(object sender, EventArgs e)
         {
-            if (LinkTypeComboBox.SelectedItem == null)
+            if (LinkTypeComboBox.SelectedItem == null ||!CheckTextBox())
             {
-                MessageBox.Show("Не задан тип узла.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Не задан тип узла или неправильно указано число добавляемых узлов.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             else
             {
-                Link NewLink = new Link(GRPH.GetNLinks(),LinkTypeComboBox.SelectedIndex+1);
-                GRPH.AddLink(NewLink);
-                LinkAddedInCollection.Invoke();
-                
+                for (int i = 0; i < Int32.Parse(HowMuchToAdd.Text); i++)
+                {
+                    Link NewLink = new Link(GRPH.GetNLinks(), LinkTypeComboBox.SelectedIndex + 1);
+                    GRPH.AddLink(NewLink);
+                    LinkAddedInCollection.Invoke();
+                }
                 //Close();
             }
            
@@ -78,15 +85,18 @@ namespace SynergicFailureAftermath
 
         private void AddAndExit_Click(object sender, EventArgs e)
         {
-            if (LinkTypeComboBox.SelectedItem == null)
+            if (LinkTypeComboBox.SelectedItem == null || !CheckTextBox())
             {
-                MessageBox.Show("Не задан тип узла.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не задан тип узла или неправильно указано число добавляемых узлов.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                Link NewLink = new Link(GRPH.GetNLinks(), LinkTypeComboBox.SelectedIndex + 1);
-                GRPH.AddLink(NewLink);
-                LinkAddedInCollection.Invoke();
+                for (int i = 0; i < Int32.Parse(HowMuchToAdd.Text); i++)
+                {
+                    Link NewLink = new Link(GRPH.GetNLinks(), LinkTypeComboBox.SelectedIndex + 1);
+                    GRPH.AddLink(NewLink);
+                    LinkAddedInCollection.Invoke();
+                }
                 Close();
             }
         }

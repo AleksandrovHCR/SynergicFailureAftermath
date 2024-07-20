@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Classes\Failure.cs" />
     <Compile Include="Classes\Result.cs" />
+    <Compile Include="Classes\Subset.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +63,12 @@
     </Compile>
     <Compile Include="Classes\Graph.cs" />
     <Compile Include="Classes\P_Link.cs" />
+    <Compile Include="Forms\BreakOnSubsets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BreakOnSubsets.Designer.cs">
+      <DependentUpon>BreakOnSubsets.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LinkViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddLink.resx">
       <DependentUpon>AddLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BreakOnSubsets.resx">
+      <DependentUpon>BreakOnSubsets.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LinkViewer.resx">
       <DependentUpon>LinkViewer.cs</DependentUpon>

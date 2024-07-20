@@ -130,8 +130,8 @@ namespace SynergicFailureAftermath
                 Savefile.FilterIndex = 1; 
                 if (Savefile.ShowDialog() == DialogResult.OK)
                 {
-                    StreamWriter AC = new StreamWriter(Savefile.FileName);
-                    Main_Graph.RecordFileToWindows(AC);
+                    StreamWriter ACollins = new StreamWriter(Savefile.FileName);
+                    Main_Graph.RecordFileToWindows(ACollins);
                 }
                 }
             

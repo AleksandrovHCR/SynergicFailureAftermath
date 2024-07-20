@@ -30,6 +30,8 @@
         {
             this.AddNewLink = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.HowMuchToAdd = new System.Windows.Forms.TextBox();
             this.InfoLabel = new System.Windows.Forms.Label();
             this.AddAndExit = new System.Windows.Forms.Button();
             this.LinkTypeComboBox = new System.Windows.Forms.ComboBox();
@@ -39,7 +41,7 @@
             // 
             // AddNewLink
             // 
-            this.AddNewLink.Location = new System.Drawing.Point(9, 89);
+            this.AddNewLink.Location = new System.Drawing.Point(6, 97);
             this.AddNewLink.Name = "AddNewLink";
             this.AddNewLink.Size = new System.Drawing.Size(87, 23);
             this.AddNewLink.TabIndex = 0;
@@ -49,6 +51,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.HowMuchToAdd);
             this.groupBox1.Controls.Add(this.InfoLabel);
             this.groupBox1.Controls.Add(this.AddAndExit);
             this.groupBox1.Controls.Add(this.LinkTypeComboBox);
@@ -56,15 +60,31 @@
             this.groupBox1.Controls.Add(this.AddNewLink);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 121);
+            this.groupBox1.Size = new System.Drawing.Size(284, 133);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметры";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(183, 16);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Число добавляемых узлов:";
+            // 
+            // HowMuchToAdd
+            // 
+            this.HowMuchToAdd.Location = new System.Drawing.Point(208, 54);
+            this.HowMuchToAdd.Name = "HowMuchToAdd";
+            this.HowMuchToAdd.Size = new System.Drawing.Size(71, 22);
+            this.HowMuchToAdd.TabIndex = 5;
+            // 
             // InfoLabel
             // 
             this.InfoLabel.AutoSize = true;
-            this.InfoLabel.Location = new System.Drawing.Point(38, 61);
+            this.InfoLabel.Location = new System.Drawing.Point(6, 78);
             this.InfoLabel.Name = "InfoLabel";
             this.InfoLabel.Size = new System.Drawing.Size(141, 16);
             this.InfoLabel.TabIndex = 4;
@@ -72,7 +92,7 @@
             // 
             // AddAndExit
             // 
-            this.AddAndExit.Location = new System.Drawing.Point(102, 89);
+            this.AddAndExit.Location = new System.Drawing.Point(99, 97);
             this.AddAndExit.Name = "AddAndExit";
             this.AddAndExit.Size = new System.Drawing.Size(167, 23);
             this.AddAndExit.TabIndex = 3;
@@ -102,7 +122,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 136);
+            this.ClientSize = new System.Drawing.Size(303, 148);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddLink";
@@ -121,5 +141,7 @@
         public System.Windows.Forms.ComboBox LinkTypeComboBox;
         private System.Windows.Forms.Label InfoLabel;
         private System.Windows.Forms.Button AddAndExit;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox HowMuchToAdd;
     }
 }
