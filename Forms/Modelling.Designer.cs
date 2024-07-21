@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.RandomCrit = new System.Windows.Forms.GroupBox();
+            this.UseSubsets = new System.Windows.Forms.CheckBox();
+            this.CriticalLinks = new System.Windows.Forms.GroupBox();
             this.RepairLink = new System.Windows.Forms.Button();
             this.BreakLink = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,9 +51,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.расчитатьПоследствияОтказовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.провестиРазбиениеМножестваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.UseSubsets = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
-            this.RandomCrit.SuspendLayout();
+            this.CriticalLinks.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SourceList)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -63,7 +63,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.UseSubsets);
-            this.groupBox1.Controls.Add(this.RandomCrit);
+            this.groupBox1.Controls.Add(this.CriticalLinks);
             this.groupBox1.Controls.Add(this.CancelModelling);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.StartModelling);
@@ -75,20 +75,31 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Данные по узлам";
             // 
-            // RandomCrit
+            // UseSubsets
             // 
-            this.RandomCrit.Controls.Add(this.RepairLink);
-            this.RandomCrit.Controls.Add(this.BreakLink);
-            this.RandomCrit.Controls.Add(this.label2);
-            this.RandomCrit.Controls.Add(this.label1);
-            this.RandomCrit.Controls.Add(this.Critical_broken);
-            this.RandomCrit.Controls.Add(this.Critical_working);
-            this.RandomCrit.Location = new System.Drawing.Point(6, 201);
-            this.RandomCrit.Name = "RandomCrit";
-            this.RandomCrit.Size = new System.Drawing.Size(400, 149);
-            this.RandomCrit.TabIndex = 4;
-            this.RandomCrit.TabStop = false;
-            this.RandomCrit.Text = "Критические узлы";
+            this.UseSubsets.AutoSize = true;
+            this.UseSubsets.Location = new System.Drawing.Point(276, 356);
+            this.UseSubsets.Name = "UseSubsets";
+            this.UseSubsets.Size = new System.Drawing.Size(126, 36);
+            this.UseSubsets.TabIndex = 5;
+            this.UseSubsets.Text = "Использовать \r\nподмножества";
+            this.UseSubsets.UseVisualStyleBackColor = true;
+            this.UseSubsets.CheckedChanged += new System.EventHandler(this.UseSubsets_CheckedChanged);
+            // 
+            // CriticalLinks
+            // 
+            this.CriticalLinks.Controls.Add(this.RepairLink);
+            this.CriticalLinks.Controls.Add(this.BreakLink);
+            this.CriticalLinks.Controls.Add(this.label2);
+            this.CriticalLinks.Controls.Add(this.label1);
+            this.CriticalLinks.Controls.Add(this.Critical_broken);
+            this.CriticalLinks.Controls.Add(this.Critical_working);
+            this.CriticalLinks.Location = new System.Drawing.Point(6, 201);
+            this.CriticalLinks.Name = "CriticalLinks";
+            this.CriticalLinks.Size = new System.Drawing.Size(400, 149);
+            this.CriticalLinks.TabIndex = 4;
+            this.CriticalLinks.TabStop = false;
+            this.CriticalLinks.Text = "Критические узлы";
             // 
             // RepairLink
             // 
@@ -265,34 +276,23 @@
             this.провестиРазбиениеМножестваToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(961, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(961, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // расчитатьПоследствияОтказовToolStripMenuItem
             // 
             this.расчитатьПоследствияОтказовToolStripMenuItem.Name = "расчитатьПоследствияОтказовToolStripMenuItem";
-            this.расчитатьПоследствияОтказовToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
+            this.расчитатьПоследствияОтказовToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.расчитатьПоследствияОтказовToolStripMenuItem.Text = "Расчитать последствия отказов";
             this.расчитатьПоследствияОтказовToolStripMenuItem.Click += new System.EventHandler(this.расчитатьПоследствияОтказовToolStripMenuItem_Click);
             // 
             // провестиРазбиениеМножестваToolStripMenuItem
             // 
             this.провестиРазбиениеМножестваToolStripMenuItem.Name = "провестиРазбиениеМножестваToolStripMenuItem";
-            this.провестиРазбиениеМножестваToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
+            this.провестиРазбиениеМножестваToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
             this.провестиРазбиениеМножестваToolStripMenuItem.Text = "Провести разбиение множества";
             this.провестиРазбиениеМножестваToolStripMenuItem.Click += new System.EventHandler(this.провестиРазбиениеМножестваToolStripMenuItem_Click);
-            // 
-            // UseSubsets
-            // 
-            this.UseSubsets.AutoSize = true;
-            this.UseSubsets.Location = new System.Drawing.Point(276, 356);
-            this.UseSubsets.Name = "UseSubsets";
-            this.UseSubsets.Size = new System.Drawing.Size(126, 36);
-            this.UseSubsets.TabIndex = 5;
-            this.UseSubsets.Text = "Использовать \r\nподмножества";
-            this.UseSubsets.UseVisualStyleBackColor = true;
-            this.UseSubsets.CheckedChanged += new System.EventHandler(this.UseSubsets_CheckedChanged);
             // 
             // Modelling
             // 
@@ -307,8 +307,8 @@
             this.Text = "Моделирование работы";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.RandomCrit.ResumeLayout(false);
-            this.RandomCrit.PerformLayout();
+            this.CriticalLinks.ResumeLayout(false);
+            this.CriticalLinks.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SourceList)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -334,7 +334,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DGWSourceIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGWConnectedToSource;
         private System.Windows.Forms.Button CancelModelling;
-        private System.Windows.Forms.GroupBox RandomCrit;
+        private System.Windows.Forms.GroupBox CriticalLinks;
         private System.Windows.Forms.ListBox Critical_broken;
         private System.Windows.Forms.ListBox Critical_working;
         private System.Windows.Forms.Label label2;

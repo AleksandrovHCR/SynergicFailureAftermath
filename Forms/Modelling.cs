@@ -230,13 +230,13 @@ namespace SynergicFailureAftermath.Forms
         {
             if(UseSubsets.Checked == true)
             {
-                RandomCrit.Enabled = false;
+                CriticalLinks.Enabled = false;
                 CancelModelling.Enabled = false;
                 if(Subsets==null || Subsets.Count==0)
                     StartModelling.Enabled = false;
             }
             else {
-                RandomCrit.Enabled = true;
+                CriticalLinks.Enabled = true;
                 CancelModelling.Enabled = true;
                 StartModelling.Enabled = true ;
             }
