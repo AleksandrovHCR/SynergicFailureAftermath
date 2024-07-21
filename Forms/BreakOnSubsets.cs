@@ -168,15 +168,20 @@ namespace SynergicFailureAftermath.Forms
                                 {
                                     Temp2.Add(tmp);
                                 }
-                                foreach (int tmp in Temp2)
+                                //foreach (int tmp in Temp2)
+                                //{
+                                //    foreach (int tmp2 in Temp1)
+                                //    {
+                                //        if (Temp1.Contains(tmp2))
+                                //        {
+                                //            Equaials++;
+                                //        }
+                                //    }
+                                //}
+                                for(int i = 0; i < Temp1.Count; i++)
                                 {
-                                    foreach (int tmp2 in Temp1)
-                                    {
-                                        if (Temp1.Contains(tmp2))
-                                        {
-                                            Equaials++;
-                                        }
-                                    }
+                                    if(Temp1[i] == Temp2[i])
+                                        Equaials++;
                                 }
                                 if (Equaials == HSet.Count)
                                 {

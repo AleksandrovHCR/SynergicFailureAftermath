@@ -92,7 +92,7 @@
             // 
             this.добавитьУзелToolStripMenuItem.Enabled = false;
             this.добавитьУзелToolStripMenuItem.Name = "добавитьУзелToolStripMenuItem";
-            this.добавитьУзелToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.добавитьУзелToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             this.добавитьУзелToolStripMenuItem.Text = "Добавить узел";
             this.добавитьУзелToolStripMenuItem.Click += new System.EventHandler(this.добавитьУзелToolStripMenuItem_Click);
             // 
@@ -100,7 +100,7 @@
             // 
             this.удалитьузелToolStripMenuItem.Enabled = false;
             this.удалитьузелToolStripMenuItem.Name = "удалитьузелToolStripMenuItem";
-            this.удалитьузелToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.удалитьузелToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             this.удалитьузелToolStripMenuItem.Text = "Очистить";
             this.удалитьузелToolStripMenuItem.Click += new System.EventHandler(this.удалитьузелToolStripMenuItem_Click);
             // 
@@ -108,7 +108,7 @@
             // 
             this.выходToolStripMenuItem.Enabled = false;
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             this.выходToolStripMenuItem.Text = "Сохранить граф";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
@@ -116,7 +116,7 @@
             // 
             this.загрузитьГрафToolStripMenuItem.Enabled = false;
             this.загрузитьГрафToolStripMenuItem.Name = "загрузитьГрафToolStripMenuItem";
-            this.загрузитьГрафToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.загрузитьГрафToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             this.загрузитьГрафToolStripMenuItem.Text = "Загрузить граф";
             this.загрузитьГрафToolStripMenuItem.Click += new System.EventHandler(this.загрузитьГрафToolStripMenuItem_Click);
             // 
@@ -204,6 +204,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
             this.Name = "MainWindow";

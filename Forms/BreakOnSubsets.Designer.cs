@@ -93,9 +93,9 @@
             this.groupBox2.Controls.Add(this.StartTheBreakage);
             this.groupBox2.Controls.Add(this.CLinks);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(435, 33);
+            this.groupBox2.Location = new System.Drawing.Point(12, 448);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(365, 409);
+            this.groupBox2.Size = new System.Drawing.Size(417, 98);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Параметры";
@@ -104,7 +104,7 @@
             // 
             this.StartTheBreakage.Location = new System.Drawing.Point(6, 68);
             this.StartTheBreakage.Name = "StartTheBreakage";
-            this.StartTheBreakage.Size = new System.Drawing.Size(353, 23);
+            this.StartTheBreakage.Size = new System.Drawing.Size(405, 23);
             this.StartTheBreakage.TabIndex = 2;
             this.StartTheBreakage.Text = "Разбить";
             this.StartTheBreakage.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@
             this.CLinks.Location = new System.Drawing.Point(6, 40);
             this.CLinks.Name = "CLinks";
             this.CLinks.ReadOnly = true;
-            this.CLinks.Size = new System.Drawing.Size(353, 22);
+            this.CLinks.Size = new System.Drawing.Size(405, 22);
             this.CLinks.TabIndex = 1;
             // 
             // label1
@@ -134,7 +134,7 @@
             this.результатыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(433, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -150,14 +150,14 @@
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // загрузитьToolStripMenuItem
             // 
             this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.загрузитьToolStripMenuItem.Text = "Загрузить";
             this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 
@@ -169,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(433, 564);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);

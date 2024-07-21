@@ -83,7 +83,12 @@ namespace SynergicFailureAftermath.Forms
                 {
                     case 1: LinksInstanceGrid[2, i].Value = "Работает"; break;
                     case 2: LinksInstanceGrid[2, i].Value = "Отключен"; break;
-                    case 3: LinksInstanceGrid[2, i].Value = "Сломан"; break;
+                    case 3: 
+                        if(Graph.GetLink(i).GetLinkType() == 4)
+                            LinksInstanceGrid[2, i].Value = "Сломан";
+                        else
+                            LinksInstanceGrid[2, i].Value = "Блокирован";
+                        break;
               
                 }
             }

@@ -29,6 +29,7 @@ namespace SynergicFailureAftermath.Forms
         }
 
         private void UpdateResultsGrid() {
+            ResultLog.Rows.Clear();
             for(int i = 0;i<Results.Count;i++)
             {
                 ResultLog.Rows.Add();

@@ -30,9 +30,6 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.FailureLog = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SFA_Result = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,6 +46,9 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FailureLog)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -81,30 +81,6 @@
             this.FailureLog.Size = new System.Drawing.Size(426, 399);
             this.FailureLog.TabIndex = 1;
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Индекс записи";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Критические узлы";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Вышедшие из строя узлы";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 125;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.SFA_Result);
@@ -132,7 +108,6 @@
             this.SFA_Result.ReadOnly = true;
             this.SFA_Result.Size = new System.Drawing.Size(100, 22);
             this.SFA_Result.TabIndex = 15;
-            
             // 
             // label3
             // 
@@ -142,7 +117,6 @@
             this.label3.Size = new System.Drawing.Size(262, 16);
             this.label3.TabIndex = 14;
             this.label3.Text = "Синергетические последствия отказа:";
-            
             // 
             // FinalCalculate
             // 
@@ -271,6 +245,30 @@
             this.Column6.ReadOnly = true;
             this.Column6.Width = 125;
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Индекс записи";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Критические узлы";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Отключенные потребители";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 125;
+            // 
             // SynergeticFailureAftermatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -295,9 +293,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView FailureLog;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox SelectableNotes;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -314,5 +309,8 @@
         private System.Windows.Forms.Button FinalCalculate;
         private System.Windows.Forms.TextBox SFA_Result;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
