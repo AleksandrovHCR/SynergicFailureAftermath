@@ -18,7 +18,8 @@ namespace SynergicFailureAftermath.Classes
                 сombination.Add(link.getIndex());
             }
             Items.Add(failure);
-            Summ += failure.GetScaleOfFailure();
+           Summ=RecalculateScale();
+            //Summ += failure.GetScaleOfFailure();
         }
         public Combination() { }
         public Combination(Combination combination) { 
@@ -33,7 +34,7 @@ namespace SynergicFailureAftermath.Classes
                 сombination.Add(link.getIndex());
             }
             Items.Add(failure);
-            Summ += failure.GetScaleOfFailure();
+            //Summ += failure.GetScaleOfFailure();
         }
         public int getLength(){
             int Summ = 0;
@@ -44,7 +45,28 @@ namespace SynergicFailureAftermath.Classes
             return Summ;
         }
         //public List<int> GetItems()=>Items;
+        private int RecalculateScale()
+        {
+            int S = 0;
+            foreach (Failure failure in Items)
+            {
+                S += failure.GetConsumers().Count;    
+            }
+            return S;
+        }
+        public Result ConvertToResult(int Index)
+        {
+            int Total_consumers = 0;
+            string Critical = null;
+            foreach (Failure failure in Items)
+            {
+                Total_consumers+=failure.GetConsumers().Count;
+                Critical += failure.GCL_string()+"; ";
+            }
 
+            return new Result(Index,Critical,Total_consumers);
+           
+        }
         public Combination Copy_and_replace(Combination cmb, Failure failure)
         {
             Combination CMB=new Combination(cmb);
@@ -61,7 +83,7 @@ namespace SynergicFailureAftermath.Classes
                           CMB.Items.Remove(cmb.Items[i]);
                 }
             }
-
+            CMB.Summ = RecalculateScale();
             CMB.Items.Add(failure);
             return CMB;
 

@@ -39,7 +39,7 @@ namespace SynergicFailureAftermath.Forms
             }
         }
 
-        private void updateGrid()
+        private void UpdateGrid()
         {
             for(int i=0;i<Failures.Count;i++)
             {
@@ -85,7 +85,7 @@ namespace SynergicFailureAftermath.Forms
             InitializeComponent();
             Failures = failures;
             this.Graph = Graph;
-            updateGrid();
+            UpdateGrid();
             UpdateLists();
             Results=new List<Result>() { };
         }
@@ -175,7 +175,7 @@ namespace SynergicFailureAftermath.Forms
                 for(int i = 2;i<Ethalon.getLength();i++)
                     Lengths_of_subsets.Add(i);
 
-                foreach(int  length in Lengths_of_subsets)//Построение комбинаций
+                foreach(int  length in Lengths_of_subsets)//Построение комбинаций (Исправить)
                 {
                     foreach(Failure failure in Failures)
                     {
@@ -186,9 +186,12 @@ namespace SynergicFailureAftermath.Forms
                             Combinations.Add(Temp);
                         }
                     }
-
                 }
-
+                for(int i = 0; i < Combinations.Count; i++)
+                {
+                    Results.Add(Combinations[i].ConvertToResult(i));
+                }
+                UpdateResultsGrid();
             }
         }
 
