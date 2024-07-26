@@ -178,7 +178,7 @@ namespace SynergicFailureAftermath.Forms
                                 //        }
                                 //    }
                                 //}
-                                for(int i = 0; i < Temp1.Count; i++)
+                                for(int i = 0; i < Temp1.Count; i++)//Защита от загрузки неподходящего разбиения
                                 {
                                     if(Temp1[i] == Temp2[i])
                                         Equaials++;

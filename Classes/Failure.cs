@@ -49,6 +49,7 @@ namespace SynergicFailureAftermath.Classes
             }
             return summ;
         }
+        public List<Link> GetScaleOfFailureList() => ScaleOfFailure;
         public Link GetBreaked(int Index) => ScaleOfFailure[Index];
 
         public string GCL_string()

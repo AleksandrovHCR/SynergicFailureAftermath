@@ -111,32 +111,88 @@ namespace SynergicFailureAftermath.Forms
             }
         }
 
+       //private int Factorial(int n)
+       // {
+       //     int x=0;
+       //     for ( int i = 1; i < n+1; i++)
+       //     {
+       //         x *= i;
+       //     }
+       //     return x;
+       // }
+       // private int Combine(int x, int y)
+       // {
+       //     return Factorial(x) / (Factorial(y) * Factorial(x - y));
+       // }
+
         private void Calculation_Click(object sender, EventArgs e)
         {
-            if (CalculatableNotes.Items.Count != 0)
+            if (!automatizeTheCalculations.Checked)
             {
-                int Summ = 0;
-                string temp = "";
-                for (int i = 0; i < CalculatableNotes.Items.Count; i++)
+                if (CalculatableNotes.Items.Count != 0)
                 {
-                   
-                    Failure Fail;
-                    int tmp = Int32.Parse(CalculatableNotes.Items[i].ToString()) - 1;
-                    Fail = Failures[tmp];
-                    Summ += Fail.GetScaleOfFailure();
-                    
-                        temp +=Fail.GCL_string()+' ';
+                    int Summ = 0;
+                    string temp = "";
+                    for (int i = 0; i < CalculatableNotes.Items.Count; i++)
+                    {
+                        int tmp = Int32.Parse(CalculatableNotes.Items[i].ToString()) - 1;
+                        Failure Fail = Failures[tmp];
+                        Summ += Fail.GetScaleOfFailure();
+
+                        temp += Fail.GCL_string() + ' ';
+                    }
+                    Result result = new Result(Results.Count, temp, Summ);
+                    Results.Add(result);
+                    UpdateResultsGrid();
+                    UpdateLists();
                 }
-                Result result = new Result(Results.Count,  temp , Summ);
-                Results.Add(result);
-                UpdateResultsGrid();
-                UpdateLists();
+                else
+                {
+                    MessageBox.Show("Записи для вычислений не выбраны.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             else
             {
-                MessageBox.Show("Записи для вычислений не выбраны.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //Здесь должен быть код для автоматизации расчётов
+                Combination Ethalon = null;
+                foreach (Failure fail in Failures)//Поиск множества
+                {
+                    if (fail.IsTotalFailure())
+                    {
+                        Ethalon = new Combination(fail); break;
+                    }
+                }
+                List<Combination> Combinations = new List<Combination>();//хранение разбиений
+                Combination Main_combination= new Combination();//Комбинация-шаблон
+                foreach(Failure fail in Failures)//
+                {
+                    if(fail.GetCriticalLinks().Count==1)
+                        Main_combination.Add(fail);
+                    if (Main_combination.getLength() == Ethalon.getLength())
+                        break;
+                }
+                List<int> Lengths_of_subsets = new List<int>();//Длины подмножеств для комбинаций
+                for(int i = 2;i<Ethalon.getLength();i++)
+                    Lengths_of_subsets.Add(i);
+
+                foreach(int  length in Lengths_of_subsets)//Построение комбинаций
+                {
+                    foreach(Failure failure in Failures)
+                    {
+                        Combination Temp = Main_combination;
+                        if (!Temp.IsContainPart(failure) && failure.GetCriticalLinks().Count == length)
+                        {
+                            Temp.Copy_and_replace(Temp, failure);
+                            Combinations.Add(Temp);
+                        }
+                    }
+
+                }
+
             }
         }
+
+        
 
         private void FinalCalculate_Click(object sender, EventArgs e)
         {
@@ -170,6 +226,23 @@ namespace SynergicFailureAftermath.Forms
             }
         }
 
-        
+        private void automatizeTheCalculations_CheckedChanged(object sender, EventArgs e)
+        {
+            if(automatizeTheCalculations.Checked)
+            {
+                SelectableNotes.Enabled = false;
+                AddToSumm.Enabled = false;
+                RemoveFromSumm.Enabled=false;
+                CalculatableNotes.Enabled = false;
+            }
+            else
+            {
+                SelectableNotes.Enabled = true;
+                AddToSumm.Enabled = true;
+                RemoveFromSumm.Enabled = true;
+                CalculatableNotes.Enabled = true;
+            }
+        }
+
     }
 }

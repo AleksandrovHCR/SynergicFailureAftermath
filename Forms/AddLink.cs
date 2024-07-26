@@ -68,7 +68,7 @@ namespace SynergicFailureAftermath
         {
             if (LinkTypeComboBox.SelectedItem == null ||!CheckTextBox())
             {
-                MessageBox.Show("Не задан тип узла или неправильно указано число добавляемых узлов. Можно добавить не больше 654 узлов зв рвз.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Не задан тип узла или неправильно указано число добавляемых узлов. Можно добавить не больше 654 узлов за раз.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             else
             {
@@ -87,7 +87,7 @@ namespace SynergicFailureAftermath
         {
             if (LinkTypeComboBox.SelectedItem == null || !CheckTextBox())
             {
-                MessageBox.Show("Не задан тип узла или неправильно указано число добавляемых узлов. Можно добавить не больше 654 узлов зв рвз.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не задан тип узла или неправильно указано число добавляемых узлов. Можно добавить не больше 654 узлов за раз.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
