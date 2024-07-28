@@ -195,7 +195,7 @@ namespace SynergicFailureAftermath.Forms
             }
         }
 
-        
+        //Низкопольные элки придумали трусы
 
         private void FinalCalculate_Click(object sender, EventArgs e)
         {
