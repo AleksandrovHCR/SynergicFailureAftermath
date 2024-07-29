@@ -153,7 +153,7 @@ namespace SynergicFailureAftermath.Forms
             }
             else
             {
-                //Здесь должен быть код для автоматизации расчётов
+                
                 Combination Ethalon = null;
                 foreach (Failure fail in Failures)//Поиск множества
                 {
@@ -174,20 +174,55 @@ namespace SynergicFailureAftermath.Forms
                 List<int> Lengths_of_subsets = new List<int>();//Длины подмножеств для комбинаций
                 for(int i = 2;i<Ethalon.getLength();i++)
                     Lengths_of_subsets.Add(i);
-
-                foreach(int  length in Lengths_of_subsets)//Построение комбинаций (Исправить)
+                Combinations.Add(Main_combination);
+                foreach(int  length in Lengths_of_subsets)//Построение комбинаций (Итерация 1)
                 {
                     foreach(Failure failure in Failures)
                     {
-                        Combination Temp = Main_combination;
+                        Combination Temp = new Combination(Main_combination);
                         if (!Temp.IsContainPart(failure) && failure.GetCriticalLinks().Count == length)
                         {
-                            Temp.Copy_and_replace(Temp, failure);
-                            Combinations.Add(Temp);
+                            Combination tmp=Temp.Copy_and_replace(Main_combination, failure);
+                            Combinations.Add(tmp);
                         }
                     }
                 }
-                for(int i = 0; i < Combinations.Count; i++)
+                while (true)//После итерации 1
+                {
+                    int Replacements = 0;
+                    List<Combination> tempCombinations = new List<Combination>() { };
+                    for(int i = 1; i < Combinations.Count; i++)
+                    {
+                       
+                            foreach (Failure failure in Failures)
+                            {
+                                Combination Temp = new Combination(Combinations[i]);
+                                if (!Temp.IsContainPart(failure) && Temp.ItIsFitThere(failure))
+                                {
+                                    Combination tmp = Temp.Copy_and_replace(Combinations[i], failure);
+                                    tempCombinations.Add(tmp);
+                                   
+                                }
+                            }
+                    }
+                    foreach(Combination combination in tempCombinations)
+                    {
+                        bool ToAdd = true;
+                        foreach(Combination cmb in Combinations)
+                        {
+                            if(combination==cmb)
+                                ToAdd = false;
+                        }
+                        if (ToAdd)
+                        {
+                            Replacements++;
+                            Combinations.Add(combination);
+                        }
+                    }
+                    //Combinations.AddRange(tempCombinations);
+                    if (Replacements == 0) break;
+                }
+                for (  int i = 0; i < Combinations.Count; i++)
                 {
                     Results.Add(Combinations[i].ConvertToResult(i));
                 }
