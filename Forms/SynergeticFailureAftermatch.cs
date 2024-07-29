@@ -111,19 +111,7 @@ namespace SynergicFailureAftermath.Forms
             }
         }
 
-       //private int Factorial(int n)
-       // {
-       //     int x=0;
-       //     for ( int i = 1; i < n+1; i++)
-       //     {
-       //         x *= i;
-       //     }
-       //     return x;
-       // }
-       // private int Combine(int x, int y)
-       // {
-       //     return Factorial(x) / (Factorial(y) * Factorial(x - y));
-       // }
+ 
 
         private void Calculation_Click(object sender, EventArgs e)
         {
@@ -153,47 +141,48 @@ namespace SynergicFailureAftermath.Forms
             }
             else
             {
-                
-                Combination Ethalon = null;
-                foreach (Failure fail in Failures)//Поиск множества
+                if (Failures.Count != 0)
                 {
-                    if (fail.IsTotalFailure())
+                    Combination Ethalon = null;
+                    foreach (Failure fail in Failures)//Поиск множества
                     {
-                        Ethalon = new Combination(fail); break;
-                    }
-                }
-                List<Combination> Combinations = new List<Combination>();//хранение разбиений
-                Combination Main_combination= new Combination();//Комбинация-шаблон
-                foreach(Failure fail in Failures)//
-                {
-                    if(fail.GetCriticalLinks().Count==1)
-                        Main_combination.Add(fail);
-                    if (Main_combination.getLength() == Ethalon.getLength())
-                        break;
-                }
-                List<int> Lengths_of_subsets = new List<int>();//Длины подмножеств для комбинаций
-                for(int i = 2;i<Ethalon.getLength();i++)
-                    Lengths_of_subsets.Add(i);
-                Combinations.Add(Main_combination);
-                foreach(int  length in Lengths_of_subsets)//Построение комбинаций (Итерация 1)
-                {
-                    foreach(Failure failure in Failures)
-                    {
-                        Combination Temp = new Combination(Main_combination);
-                        if (!Temp.IsContainPart(failure) && failure.GetCriticalLinks().Count == length)
+                        if (fail.IsTotalFailure())
                         {
-                            Combination tmp=Temp.Copy_and_replace(Main_combination, failure);
-                            Combinations.Add(tmp);
+                            Ethalon = new Combination(fail); break;
                         }
                     }
-                }
-                while (true)//После итерации 1
-                {
-                    int Replacements = 0;
-                    List<Combination> tempCombinations = new List<Combination>() { };
-                    for(int i = 1; i < Combinations.Count; i++)
+                    List<Combination> Combinations = new List<Combination>();//хранение разбиений
+                    Combination Main_combination = new Combination();//Комбинация-шаблон
+                    foreach (Failure fail in Failures)//
                     {
-                       
+                        if (fail.GetCriticalLinks().Count == 1)
+                            Main_combination.Add(fail);
+                        if (Main_combination.getLength() == Ethalon.getLength())
+                            break;
+                    }
+                    List<int> Lengths_of_subsets = new List<int>();//Длины подмножеств для комбинаций
+                    for (int i = 2; i < Ethalon.getLength(); i++)
+                        Lengths_of_subsets.Add(i);
+                    Combinations.Add(Main_combination);
+                    foreach (int length in Lengths_of_subsets)//Построение комбинаций (Итерация 1)
+                    {
+                        foreach (Failure failure in Failures)
+                        {
+                            Combination Temp = new Combination(Main_combination);
+                            if (!Temp.IsContainPart(failure) && failure.GetCriticalLinks().Count == length)
+                            {
+                                Combination tmp = Temp.Copy_and_replace(Main_combination, failure);
+                                Combinations.Add(tmp);
+                            }
+                        }
+                    }
+                    while (true)//После итерации 1
+                    {
+                        int Replacements = 0;
+                        List<Combination> tempCombinations = new List<Combination>() { };
+                        for (int i = 1; i < Combinations.Count; i++)
+                        {
+
                             foreach (Failure failure in Failures)
                             {
                                 Combination Temp = new Combination(Combinations[i]);
@@ -201,32 +190,35 @@ namespace SynergicFailureAftermath.Forms
                                 {
                                     Combination tmp = Temp.Copy_and_replace(Combinations[i], failure);
                                     tempCombinations.Add(tmp);
-                                   
+
                                 }
                             }
+                        }
+                        foreach (Combination combination in tempCombinations)
+                        {
+                            bool ToAdd = true;
+                            foreach (Combination cmb in Combinations)
+                            {
+                                if (combination == cmb)
+                                    ToAdd = false;
+                            }
+                            if (ToAdd)
+                            {
+                                Replacements++;
+                                Combinations.Add(combination);
+                            }
+                        }
+                        //Combinations.AddRange(tempCombinations);
+                        if (Replacements == 0) break;
                     }
-                    foreach(Combination combination in tempCombinations)
+                    for (int i = 0; i < Combinations.Count; i++)
                     {
-                        bool ToAdd = true;
-                        foreach(Combination cmb in Combinations)
-                        {
-                            if(combination==cmb)
-                                ToAdd = false;
-                        }
-                        if (ToAdd)
-                        {
-                            Replacements++;
-                            Combinations.Add(combination);
-                        }
+                        Results.Add(Combinations[i].ConvertToResult(i));
                     }
-                    //Combinations.AddRange(tempCombinations);
-                    if (Replacements == 0) break;
+                    UpdateResultsGrid();
                 }
-                for (  int i = 0; i < Combinations.Count; i++)
-                {
-                    Results.Add(Combinations[i].ConvertToResult(i));
-                }
-                UpdateResultsGrid();
+                else
+                    MessageBox.Show("Журнал ошибок пуст.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
