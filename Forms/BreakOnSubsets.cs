@@ -94,6 +94,8 @@ namespace SynergicFailureAftermath.Forms
             }            
             UpdateResults();
             StartTheBreakage.Enabled = false;
+            if(HSet.Count > 0)
+                MessageBox.Show("Разбиение на подмножества проведено. Теперь доступно применение подмножеств при моделировании.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -214,4 +216,5 @@ namespace SynergicFailureAftermath.Forms
 
         }
     }
+    
 }

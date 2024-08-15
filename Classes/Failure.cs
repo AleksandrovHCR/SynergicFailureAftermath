@@ -9,12 +9,14 @@ namespace SynergicFailureAftermath.Classes
         private int Index;
         private List<Link> ScaleOfFailure;//Вышедшие из строя узлы
         private bool IsTotal = false;
+        private List<Link> RandomCrits = new List<Link>();
 
         public Failure(int index, List<Link> scaleOfFalure, bool IsTotal)
         {
             Index = index;
             ScaleOfFailure = scaleOfFalure;
             this.IsTotal = IsTotal;
+            RandomCrits = GetCriticalLinks();
         }
         
         public List<Link> GetCriticalLinks()
