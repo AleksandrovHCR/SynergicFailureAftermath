@@ -92,6 +92,8 @@ namespace SynergicFailureAftermath
         public LinkManager(Graph GRPH1, MainWindow MW)
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             MainWindow = MW;
             Graph = GRPH1;
             for(int i = 0; i<Graph.GetNLinks();i++)

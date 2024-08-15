@@ -21,5 +21,11 @@ namespace SynergicFailureAftermath.Forms
         {
 
         }
+
+        private void About_Load(object sender, EventArgs e)
+        {
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+        }
     }
 }

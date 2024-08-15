@@ -241,5 +241,11 @@ namespace SynergicFailureAftermath.Forms
                 StartModelling.Enabled = true ;
             }
         }
+
+        private void Modelling_Load(object sender, EventArgs e)
+        {
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+        }
     }
 }

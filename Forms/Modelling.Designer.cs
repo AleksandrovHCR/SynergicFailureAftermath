@@ -276,21 +276,21 @@
             this.провестиРазбиениеМножестваToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(961, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(961, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // расчитатьПоследствияОтказовToolStripMenuItem
             // 
             this.расчитатьПоследствияОтказовToolStripMenuItem.Name = "расчитатьПоследствияОтказовToolStripMenuItem";
-            this.расчитатьПоследствияОтказовToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.расчитатьПоследствияОтказовToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.расчитатьПоследствияОтказовToolStripMenuItem.Text = "Расчитать последствия отказов";
             this.расчитатьПоследствияОтказовToolStripMenuItem.Click += new System.EventHandler(this.расчитатьПоследствияОтказовToolStripMenuItem_Click);
             // 
             // провестиРазбиениеМножестваToolStripMenuItem
             // 
             this.провестиРазбиениеМножестваToolStripMenuItem.Name = "провестиРазбиениеМножестваToolStripMenuItem";
-            this.провестиРазбиениеМножестваToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
+            this.провестиРазбиениеМножестваToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
             this.провестиРазбиениеМножестваToolStripMenuItem.Text = "Провести разбиение множества";
             this.провестиРазбиениеМножестваToolStripMenuItem.Click += new System.EventHandler(this.провестиРазбиениеМножестваToolStripMenuItem_Click);
             // 
@@ -305,6 +305,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Modelling";
             this.Text = "Моделирование работы";
+            this.Load += new System.EventHandler(this.Modelling_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.CriticalLinks.ResumeLayout(false);

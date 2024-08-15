@@ -42,7 +42,8 @@ namespace SynergicFailureAftermath.Forms
 
         private void LinkViewer_Load(object sender, EventArgs e)
         {
-
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
     }
 }

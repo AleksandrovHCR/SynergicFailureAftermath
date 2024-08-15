@@ -209,6 +209,7 @@
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Синергетические последствия отказа";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.Graph_box.ResumeLayout(false);

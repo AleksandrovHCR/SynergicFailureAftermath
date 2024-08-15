@@ -27,6 +27,8 @@ namespace SynergicFailureAftermath
         public MainWindow()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
         
 
@@ -130,6 +132,11 @@ namespace SynergicFailureAftermath
                  
                 }
             }
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

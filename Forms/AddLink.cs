@@ -100,5 +100,11 @@ namespace SynergicFailureAftermath
                 Close();
             }
         }
+
+        private void AddLink_Load(object sender, EventArgs e)
+        {
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+        }
     }
 }

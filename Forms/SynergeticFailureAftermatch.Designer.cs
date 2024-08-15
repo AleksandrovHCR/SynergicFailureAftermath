@@ -34,6 +34,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.automatizeTheCalculations = new System.Windows.Forms.CheckBox();
             this.SFA_Result = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.FinalCalculate = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.automatizeTheCalculations = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FailureLog)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -126,6 +126,17 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Расчёт последствий";
+            // 
+            // automatizeTheCalculations
+            // 
+            this.automatizeTheCalculations.AutoSize = true;
+            this.automatizeTheCalculations.Location = new System.Drawing.Point(32, 375);
+            this.automatizeTheCalculations.Name = "automatizeTheCalculations";
+            this.automatizeTheCalculations.Size = new System.Drawing.Size(301, 20);
+            this.automatizeTheCalculations.TabIndex = 16;
+            this.automatizeTheCalculations.Text = "Автоматизировать расчёты последствий";
+            this.automatizeTheCalculations.UseVisualStyleBackColor = true;
+            this.automatizeTheCalculations.CheckedChanged += new System.EventHandler(this.automatizeTheCalculations_CheckedChanged);
             // 
             // SFA_Result
             // 
@@ -271,17 +282,6 @@
             this.Column6.ReadOnly = true;
             this.Column6.Width = 125;
             // 
-            // automatizeTheCalculations
-            // 
-            this.automatizeTheCalculations.AutoSize = true;
-            this.automatizeTheCalculations.Location = new System.Drawing.Point(32, 375);
-            this.automatizeTheCalculations.Name = "automatizeTheCalculations";
-            this.automatizeTheCalculations.Size = new System.Drawing.Size(301, 20);
-            this.automatizeTheCalculations.TabIndex = 16;
-            this.automatizeTheCalculations.Text = "Автоматизировать расчёты последствий";
-            this.automatizeTheCalculations.UseVisualStyleBackColor = true;
-            this.automatizeTheCalculations.CheckedChanged += new System.EventHandler(this.automatizeTheCalculations_CheckedChanged);
-            // 
             // SynergeticFailureAftermatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -292,6 +292,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SynergeticFailureAftermatch";
             this.Text = "Поиск последствий отказа";
+            this.Load += new System.EventHandler(this.SynergeticFailureAftermatch_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FailureLog)).EndInit();
             this.groupBox2.ResumeLayout(false);

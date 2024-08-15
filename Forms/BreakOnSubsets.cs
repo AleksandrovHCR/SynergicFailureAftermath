@@ -40,6 +40,8 @@ namespace SynergicFailureAftermath.Forms
             {
                 CLinks.Text += $"{i+1}; ";
             }
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
 
@@ -205,6 +207,11 @@ namespace SynergicFailureAftermath.Forms
                     }
                 }
             }
+        }
+
+        private void результатыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
