@@ -172,16 +172,7 @@ namespace SynergicFailureAftermath.Forms
                                 {
                                     Temp2.Add(tmp);
                                 }
-                                //foreach (int tmp in Temp2)
-                                //{
-                                //    foreach (int tmp2 in Temp1)
-                                //    {
-                                //        if (Temp1.Contains(tmp2))
-                                //        {
-                                //            Equaials++;
-                                //        }
-                                //    }
-                                //}
+                                
                                 for(int i = 0; i < Temp1.Count; i++)//Защита от загрузки неподходящего разбиения
                                 {
                                     if(Temp1[i] == Temp2[i])
