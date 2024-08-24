@@ -9,7 +9,7 @@ using System.IO;
 namespace SynergicFailureAftermath
 {
    
-      
+     
     public partial class MainWindow : Form
     {
 

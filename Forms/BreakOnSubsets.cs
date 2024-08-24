@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using SynergicFailureAftermath.Classes;
+using System.Data.SQLite;
+using System.Data;
 
 namespace SynergicFailureAftermath.Forms
 {
@@ -42,6 +44,7 @@ namespace SynergicFailureAftermath.Forms
             }
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            CheckDBExistance();
         }
 
 
@@ -77,6 +80,71 @@ namespace SynergicFailureAftermath.Forms
                 currentSubset.Remove(set.ElementAt(i));
             }
         }
+        
+        private void AddSubsetsToDB()
+        {
+            foreach (Subset subset in Subsets)
+            {
+                using (SQLiteConnection connection = new SQLiteConnection("Data Source=Subsets.db; Version=3;"))
+                {
+                    string commandstring = "INSERT INTO Subsets ([Break]) VALUES (@Break)";
+                    using (SQLiteCommand command = new SQLiteCommand(commandstring, connection))
+                    {
+                        connection.Open();
+                        string ToDB = null;
+                        foreach(int i in subset.GetItems())
+                        {
+                            ToDB += $"{i} ";
+                        }
+                        command.Parameters.AddWithValue("@Break", ToDB);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            LoadDGW();
+        }
+        private void CheckDBExistance()
+        {
+            if (!File.Exists("Subsets.db"))
+            {
+                SQLiteConnection.CreateFile("Subsets.db");
+                using (SQLiteConnection Connect = new SQLiteConnection("Data Source=Subsets.db; Version=3;"))
+                {
+                    string commandstring = "CREATE TABLE Subsets(Break TEXT)";
+                    using (SQLiteCommand command = new SQLiteCommand(commandstring, Connect))
+                    {
+                        Connect.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            else
+            {
+                LoadDGW();
+            }
+        }
+
+        private void LoadDGW()
+        {
+            TestOfDB.DataSource = GetDataFromDB();
+        }
+
+        private DataTable GetDataFromDB()
+        {
+            DataTable dataTableSubsets = new DataTable();
+            using (SQLiteConnection Connection = new SQLiteConnection("Data Source=Subsets.db; Version=3;"))
+            {
+                string cmd = "SELECT * FROM Subsets";
+                using (SQLiteCommand command = new SQLiteCommand(cmd, Connection))
+                {
+                    Connection.Open();
+                    command.ExecuteNonQuery();
+                    SQLiteDataReader reader = command.ExecuteReader();  
+                    dataTableSubsets.Load(reader);
+                }
+            }
+            return dataTableSubsets;
+        }
 
         private void StartTheBreakage_Click(object sender, EventArgs e)
         {
@@ -91,7 +159,8 @@ namespace SynergicFailureAftermath.Forms
             {
                 Subset temp = new Subset(i, Subsets1[i]);
                 Subsets.Add(temp);
-            }            
+            }
+            AddSubsetsToDB();
             UpdateResults();
             StartTheBreakage.Enabled = false;
             if(HSet.Count > 0)

@@ -9,5 +9,6 @@ namespace SynergicFailureAftermath.Classes
         public Subset(int Index, HashSet<int> Items) { this.Index = Index;this.Items = Items; }
         public int GetIndex() { return Index; }
         public HashSet<int> GetItems() {  return Items; }
+        
     }
 }
