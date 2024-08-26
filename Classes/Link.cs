@@ -6,7 +6,6 @@ namespace SynergicFailureAftermath
     public class Link : P_Link
     {
         private Link_type _type; //Тип
-        //private int Links=0;//Число связанных узлов
         private List<Link> Connected_Links;//Связанные узлы
         private Instance _instance; //Состояние
         public int getIndex() => Index;

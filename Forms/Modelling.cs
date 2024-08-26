@@ -16,7 +16,7 @@ namespace SynergicFailureAftermath.Forms
         private Graph Graph;
         private List<Failure> FailureLog;
         private List<Subset> Subsets;   
-
+        private MainWindow MainWindow;
         private delegate void PowerPlant();
         private PowerPlant _powerPlant;
         //private PowerPlant _disablePower;
@@ -96,9 +96,10 @@ namespace SynergicFailureAftermath.Forms
 
 
 
-    public Modelling(Graph Graph)
+    public Modelling(Graph Graph, MainWindow mainWindow)
         {
             InitializeComponent();
+            MainWindow = mainWindow;
             this.Graph = Graph;
             UpdateDatagrid();
             FailureLog = new List<Failure> { };
@@ -222,7 +223,7 @@ namespace SynergicFailureAftermath.Forms
         {
             //List<int> temp= new List<int>() { };
             Subsets = new List<Subset>() { };
-            BreakOnSubsets breakOnSubsets=new BreakOnSubsets(Subsets,Graph.GetCriticalIndexs());
+            BreakOnSubsets breakOnSubsets=new BreakOnSubsets(Subsets,Graph.GetCriticalIndexs(),MainWindow);
             breakOnSubsets.ShowDialog();
         }
 

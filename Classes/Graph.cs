@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.IO;
 using static System.Windows.Forms.LinkLabel;
 using System.Runtime.InteropServices;
+using System.Data.SQLite;
 
 namespace SynergicFailureAftermath.Classes
 {
@@ -170,5 +171,44 @@ namespace SynergicFailureAftermath.Classes
                 MessageBox.Show($"Файл не может быть прочитан. Сообщение об ошибке: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void ReadDatabaseFromWindows(string DatabaseConnection,MainWindow MW)
+        {
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(DatabaseConnection))
+                {
+                    string command_to_read = "Select * FROM Graph";
+                    List<string> args = new List<string>();
+                    using (SQLiteCommand command = new SQLiteCommand(command_to_read, connection))
+                    {
+                        connection.Open();
+                        SQLiteDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Link link = new Link(Convert.ToInt32(reader.GetValue(0)), Convert.ToInt32(reader.GetValue(1)));
+                            args.Add(Convert.ToString(reader.GetValue(2)));
+                            All_Links.Add(link);
+                            DataGridUpd(MW);
+                        }
+                        reader.Close();
+                        reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            string[] Converter =Convert.ToString(reader.GetValue(2)).Split(' ');
+                            for (int i = 0; i < Converter.Length - 1; i++)
+                            {
+                                if (!All_Links[Convert.ToInt32(reader.GetValue(0))].FindConnectedLink(Int32.Parse((Converter[i]))))
+                                    All_Links[Convert.ToInt32(reader.GetValue(0))].AddConnectedLink(GetLink(Int32.Parse((Converter[i]))));
+                            }
+                        }
+                        DataGridUpd2(MW);
+                    }
+                   
+                }
+            }
+            catch (Exception ex) { MessageBox.Show($"Файл не может быть прочитан. Сообщение об ошибке: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+
     }
 }

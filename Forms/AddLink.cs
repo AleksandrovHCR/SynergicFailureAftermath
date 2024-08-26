@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace SynergicFailureAftermath
 
     public partial class AddLink : Form
     {
-        //public delegate void GraphLiveReaction(string message, int Value);
+        
         public delegate void GraphLiveReaction();
         public event GraphLiveReaction LinkAddedInCollection;
         MainWindow MainWindow;
@@ -77,10 +78,32 @@ namespace SynergicFailureAftermath
                     Link NewLink = new Link(GRPH.GetNLinks(), LinkTypeComboBox.SelectedIndex + 1);
                     GRPH.AddLink(NewLink);
                     LinkAddedInCollection.Invoke();
+                    if(MainWindow.DatabaseConnectionContext != null) 
+                        AddLinkToDB(NewLink);
                 }
                 //Close();
             }
            
+        }
+        private void AddLinkToDB(Link Link)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(MainWindow.DatabaseConnectionContext))
+            {
+                string commandstring = "INSERT INTO Graph ([Id],[Type],[Connects]) VALUES (@ID,@Type,@Connects)";
+                using (SQLiteCommand command = new SQLiteCommand(commandstring, connection))
+                {
+                    connection.Open();
+                    string ToDB = null;
+                    command.Parameters.AddWithValue("ID", Link.getIndex());
+                    command.Parameters.AddWithValue("Type", Link.GetLinkType());
+                    for (int j = 0; j < Link.GetLinks(); j++)
+                    {   
+                        ToDB += $"{Link.GetConnectedLink(j).getIndex()} ";
+                    }
+                    command.Parameters.AddWithValue("@Connects", ToDB);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         private void AddAndExit_Click(object sender, EventArgs e)
@@ -96,6 +119,8 @@ namespace SynergicFailureAftermath
                     Link NewLink = new Link(GRPH.GetNLinks(), LinkTypeComboBox.SelectedIndex + 1);
                     GRPH.AddLink(NewLink);
                     LinkAddedInCollection.Invoke();
+                    if (MainWindow.DatabaseConnectionContext != null)
+                        AddLinkToDB(NewLink);
                 }
                 Close();
             }
