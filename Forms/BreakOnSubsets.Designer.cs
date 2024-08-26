@@ -42,14 +42,11 @@
             сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             OpenFile = new System.Windows.Forms.OpenFileDialog();
-            groupBox3 = new System.Windows.Forms.GroupBox();
-            TestOfDB = new System.Windows.Forms.DataGridView();
+            очиститьБазуДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ListOfSubsets).BeginInit();
             groupBox2.SuspendLayout();
             menuStrip1.SuspendLayout();
-            groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)TestOfDB).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -136,13 +133,13 @@
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            menuStrip1.Size = new System.Drawing.Size(837, 24);
+            menuStrip1.Size = new System.Drawing.Size(379, 24);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
             // результатыToolStripMenuItem
             // 
-            результатыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { сохранитьToolStripMenuItem, загрузитьToolStripMenuItem });
+            результатыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { сохранитьToolStripMenuItem, загрузитьToolStripMenuItem, очиститьБазуДанныхToolStripMenuItem });
             результатыToolStripMenuItem.Name = "результатыToolStripMenuItem";
             результатыToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
             результатыToolStripMenuItem.Text = "Результаты";
@@ -151,14 +148,14 @@
             // сохранитьToolStripMenuItem
             // 
             сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            сохранитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            сохранитьToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             сохранитьToolStripMenuItem.Text = "Сохранить";
             сохранитьToolStripMenuItem.Click += сохранитьToolStripMenuItem_Click;
             // 
             // загрузитьToolStripMenuItem
             // 
             загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            загрузитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            загрузитьToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             загрузитьToolStripMenuItem.Text = "Загрузить";
             загрузитьToolStripMenuItem.Click += загрузитьToolStripMenuItem_Click;
             // 
@@ -166,30 +163,18 @@
             // 
             OpenFile.FileName = "OpenFile";
             // 
-            // groupBox3
+            // очиститьБазуДанныхToolStripMenuItem
             // 
-            groupBox3.Controls.Add(TestOfDB);
-            groupBox3.Location = new System.Drawing.Point(381, 27);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new System.Drawing.Size(444, 485);
-            groupBox3.TabIndex = 3;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Тестирование базы данных";
-            // 
-            // TestOfDB
-            // 
-            TestOfDB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            TestOfDB.Location = new System.Drawing.Point(6, 20);
-            TestOfDB.Name = "TestOfDB";
-            TestOfDB.Size = new System.Drawing.Size(432, 459);
-            TestOfDB.TabIndex = 0;
+            очиститьБазуДанныхToolStripMenuItem.Name = "очиститьБазуДанныхToolStripMenuItem";
+            очиститьБазуДанныхToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            очиститьБазуДанныхToolStripMenuItem.Text = "Очистить базу данных";
+            очиститьБазуДанныхToolStripMenuItem.Click += очиститьБазуДанныхToolStripMenuItem_Click;
             // 
             // BreakOnSubsets
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(837, 529);
-            Controls.Add(groupBox3);
+            ClientSize = new System.Drawing.Size(379, 529);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(menuStrip1);
@@ -203,8 +188,6 @@
             groupBox2.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)TestOfDB).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -225,7 +208,6 @@
         private System.Windows.Forms.TextBox CLinks;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog OpenFile;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView TestOfDB;
+        private System.Windows.Forms.ToolStripMenuItem очиститьБазуДанныхToolStripMenuItem;
     }
 }

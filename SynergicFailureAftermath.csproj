@@ -5,12 +5,18 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Version>1.0.1</Version>
+    <Authors>Александров Дмитрий Федорович</Authors>
+    <Copyright>MIT</Copyright>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Forms\About.cs" />
+    <Compile Remove="Forms\About.Designer.cs" />
     <Compile Remove="Forms\AboutBox.cs" />
     <Compile Remove="Forms\AboutBox.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Remove="Forms\About.resx" />
     <EmbeddedResource Remove="Forms\AboutBox.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -18,5 +24,18 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>

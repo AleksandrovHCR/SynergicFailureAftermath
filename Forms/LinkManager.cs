@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -110,6 +111,64 @@ namespace SynergicFailureAftermath
                 LinkManagerLiveReaction.Invoke(Graph.GetLink(LinksCombo.SelectedIndex));
             }
         }
+        //private void UpdateParametersInDB_Type(Link Link)
+        //{
+        //    using (SQLiteConnection connection = new SQLiteConnection(MainWindow.DatabaseConnectionContext))
+        //    {
+
+        //        //string commandstring = "INSERT INTO Graph ([Id],[Type],[Connects]) VALUES (@ID,@Type,@Connects)";
+        //        string commandstring = $"UPDATE Graph SET Type = {Link.GetLinkType()} WHERE [Id] = {Link.getIndex()};";
+        //        using (SQLiteCommand command = new SQLiteCommand(commandstring, connection))
+        //        {
+        //            connection.Open();
+        //            command.ExecuteNonQuery();
+        //        }
+        //    }
+        //}
+        //private void UpdateParametersInDB_Con(Link Link)
+        //{
+        //    using (SQLiteConnection connection = new SQLiteConnection(MainWindow.DatabaseConnectionContext))
+        //    {
+        //        string ToDB = null;
+        //        for (int j = 0; j < Link.GetLinks(); j++)
+        //        {
+        //            ToDB += $"{Link.GetConnectedLink(j).getIndex()} ";
+        //        }
+        //        //string commandstring = "INSERT INTO Graph ([Id],[Type],[Connects]) VALUES (@ID,@Type,@Connects)";
+        //        string commandstring = null;
+        //        if (ToDB != null) 
+        //            commandstring = $"UPDATE Graph SET Connects = '{ToDB}' WHERE [Id] = {Link.getIndex()};";
+        //        else
+        //            commandstring = $"UPDATE Graph SET Connects = Null WHERE [Id] = {Link.getIndex()};";
+        //        using (SQLiteCommand command = new SQLiteCommand(commandstring, connection))
+        //        {
+        //            connection.Open();
+        //            command.ExecuteNonQuery();
+        //        }
+        //    }
+        //}
+        private void UpdateParametersInDB(Link Link)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(MainWindow.DatabaseConnectionContext))
+            {
+                string ToDB = null;
+                for (int j = 0; j < Link.GetLinks(); j++)
+                {
+                    ToDB += $"{Link.GetConnectedLink(j).getIndex()} ";
+                }
+                //string commandstring = "INSERT INTO Graph ([Id],[Type],[Connects]) VALUES (@ID,@Type,@Connects)";
+                string commandstring = null;
+                if (ToDB != null)
+                    commandstring = $"UPDATE Graph SET Type = {Link.GetLinkType()}, Connects = '{ToDB}' WHERE [Id] = {Link.getIndex()};";
+                else
+                    commandstring = $"UPDATE Graph SET Type = {Link.GetLinkType()}, Connects = Null WHERE [Id] = {Link.getIndex()};";
+                using (SQLiteCommand command = new SQLiteCommand(commandstring, connection))
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         private void ChangeTypeButton_Click(object sender, EventArgs e)
         {
@@ -126,6 +185,7 @@ namespace SynergicFailureAftermath
                     }
                 }
             }
+            if (MainWindow.DatabaseConnectionContext != null) UpdateParametersInDB(Graph.GetLink(LinksCombo.SelectedIndex));
         }
 
         private void всеУзлыToolStripMenuItem_Click(object sender, EventArgs e)
@@ -147,6 +207,7 @@ namespace SynergicFailureAftermath
                 Graph.GetLink(Int32.Parse(LinksCombo.SelectedItem.ToString()) - 1).AddConnectedLink(Graph.GetLink(Int32.Parse(Avaliable_to_connect.SelectedItem.ToString()) - 1));
                 LinkManagerLiveReaction.Invoke(Graph.GetLink(Int32.Parse(LinksCombo.SelectedItem.ToString()) - 1));
                 DataGridUpd();
+                if (MainWindow.DatabaseConnectionContext != null) UpdateParametersInDB(Graph.GetLink(LinksCombo.SelectedIndex));
             }
         }
 
@@ -165,6 +226,7 @@ namespace SynergicFailureAftermath
                 Graph.GetLink(test.getIndex()).RemoveConnectedLink(SItem);
                 LinkManagerLiveReaction.Invoke(Graph.GetLink(SItem));
                 DataGridUpd();
+                if (MainWindow.DatabaseConnectionContext != null) UpdateParametersInDB(Graph.GetLink(LinksCombo.SelectedIndex));
             }
         }
 

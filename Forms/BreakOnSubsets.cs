@@ -13,8 +13,8 @@ namespace SynergicFailureAftermath.Forms
     {
         private List<Subset> Subsets;
         private List<int> Main_Set;
-
-
+        private MainWindow MW;
+        #region Combine
         private void UpdateResults()
         {
             ListOfSubsets.Rows.Clear();
@@ -30,23 +30,56 @@ namespace SynergicFailureAftermath.Forms
                 ListOfSubsets[1, i].Value = temp;
             }
         }
-        
 
 
-        public BreakOnSubsets(List<Subset> subsets, List<int> main_Set)
+
+        public BreakOnSubsets(List<Subset> subsets, List<int> main_Set, MainWindow MW)
         {
             InitializeComponent();
+            this.MW = MW;
+            очиститьБазуДанныхToolStripMenuItem.Enabled = false;
             this.Subsets = subsets;
             Main_Set = main_Set;
-            foreach(int i in Main_Set)
+            foreach (int i in Main_Set)
             {
-                CLinks.Text += $"{i+1}; ";
+                CLinks.Text += $"{i + 1}; ";
             }
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            CheckDBExistance();
+            if (MW.DatabaseConnectionContext != null)
+                LoadDatabase();
+            //CheckDBExistance();
         }
-
+        private void LoadDatabase()
+        {
+            int a = 0;
+            using (SQLiteConnection connection = new SQLiteConnection(MW.DatabaseConnectionContext))
+            {
+                string command = "SELECT * FROM Subsets";
+                using (SQLiteCommand command2 = new SQLiteCommand(command, connection))
+                {
+                    connection.Open();
+                    SQLiteDataReader reader = command2.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string[] Converter = Convert.ToString(reader.GetString(1)).Split(' ');
+                        HashSet<int> list = new HashSet<int>();
+                        for (int i = 0; i < Converter.Length - 1; i++)
+                            list.Add(Int32.Parse(Converter[i]));
+                        Subset subset = new Subset(Convert.ToInt32(reader.GetValue(0)), list);
+                        Subsets.Add(subset);
+                        a++;
+                    }
+                    reader.Close();
+                }
+            }
+            UpdateResults();
+            if (a > 0)
+            {
+                StartTheBreakage.Enabled = false;
+                очиститьБазуДанныхToolStripMenuItem.Enabled = true;
+            }
+        }
 
         private List<HashSet<T>> GetSubsets<T>(HashSet<T> set)
         {
@@ -80,30 +113,33 @@ namespace SynergicFailureAftermath.Forms
                 currentSubset.Remove(set.ElementAt(i));
             }
         }
-        
+        #endregion
         private void AddSubsetsToDB()
         {
             foreach (Subset subset in Subsets)
             {
-                using (SQLiteConnection connection = new SQLiteConnection("Data Source=Subsets.db; Version=3;"))
+                using (SQLiteConnection connection = new SQLiteConnection(MW.DatabaseConnectionContext))
                 {
-                    string commandstring = "INSERT INTO Subsets ([Break]) VALUES (@Break)";
+                    string commandstring = "INSERT INTO Subsets ([Id],[Subset]) VALUES (@Id,@Subset)";
                     using (SQLiteCommand command = new SQLiteCommand(commandstring, connection))
                     {
                         connection.Open();
                         string ToDB = null;
-                        foreach(int i in subset.GetItems())
+                        foreach (int i in subset.GetItems())
                         {
                             ToDB += $"{i} ";
                         }
-                        command.Parameters.AddWithValue("@Break", ToDB);
+                        command.Parameters.AddWithValue("@Id", subset.GetIndex());
+                        command.Parameters.AddWithValue("@Subset", ToDB);
                         command.ExecuteNonQuery();
                     }
                 }
             }
-            LoadDGW();
+            //LoadDGW();
         }
-        private void CheckDBExistance()
+
+
+        /*private void CheckDBExistance()
         {
             if (!File.Exists("Subsets.db"))
             {
@@ -145,31 +181,32 @@ namespace SynergicFailureAftermath.Forms
             }
             return dataTableSubsets;
         }
-
+        */
         private void StartTheBreakage_Click(object sender, EventArgs e)
         {
-            var HSet=new HashSet<int>() { };
+            var HSet = new HashSet<int>() { };
             foreach (var element in Main_Set)
             {
                 HSet.Add(element);
             }
 
             var Subsets1 = GetSubsets(HSet);
-            for(int i= 0; i < Subsets1.Count; i++)
+            for (int i = 0; i < Subsets1.Count; i++)
             {
                 Subset temp = new Subset(i, Subsets1[i]);
                 Subsets.Add(temp);
             }
-            AddSubsetsToDB();
+            if (MW.DatabaseConnectionContext != null)
+                AddSubsetsToDB();
             UpdateResults();
             StartTheBreakage.Enabled = false;
-            if(HSet.Count > 0)
+            if (HSet.Count > 0)
                 MessageBox.Show("Разбиение на подмножества проведено. Теперь доступно применение подмножеств при моделировании.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(Subsets.Count == 0)
+            if (Subsets.Count == 0)
             {
                 MessageBox.Show("Разбиение на подмножества не проведено.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -185,8 +222,8 @@ namespace SynergicFailureAftermath.Forms
                     {
                         string Writer2 = null;
                         foreach (var element1 in element.GetItems())
-                            Writer2 += element1.ToString()+" ";
-                        
+                            Writer2 += element1.ToString() + " ";
+
                         Writer1.WriteLine(Writer2);
                     }
                     Writer1.Close();
@@ -206,19 +243,19 @@ namespace SynergicFailureAftermath.Forms
             OpenFile.FilterIndex = 1;
             if (OpenFile.ShowDialog() == DialogResult.OK)
             {
-                if (OpenFile.FileName != null && Main_Set.Count!=0)
+                if (OpenFile.FileName != null && Main_Set.Count != 0)
                 {
                     ListOfSubsets.Rows.Clear();
                     StreamReader Reader1 = new StreamReader(OpenFile.FileName);
                     try
                     {
-                        int CurrentItem= 0;
+                        int CurrentItem = 0;
                         while (!Reader1.EndOfStream)
                         {
-                            
+
                             string[] Reader2 = Reader1.ReadLine().Split(' ');
-                            HashSet<int> SetKeep= new HashSet<int>() { };
-                            for(int Index=0;Index<Reader2.Length-1;Index++)
+                            HashSet<int> SetKeep = new HashSet<int>() { };
+                            for (int Index = 0; Index < Reader2.Length - 1; Index++)
                             {
                                 SetKeep.Add(Int32.Parse(Reader2[Index]));
                             }
@@ -226,25 +263,25 @@ namespace SynergicFailureAftermath.Forms
                             Subsets.Add(AddableSubset);
                             CurrentItem++;
                         }
-                        foreach(Subset s in Subsets)
+                        foreach (Subset s in Subsets)
                         {
-                            if (s.GetItems().Count==HSet.Count)
+                            if (s.GetItems().Count == HSet.Count)
                             {
                                 int Equaials = 0;
-                               List<int> Temp1= new List<int>() { };
-                                foreach(int tmp in s.GetItems())
+                                List<int> Temp1 = new List<int>() { };
+                                foreach (int tmp in s.GetItems())
                                 {
                                     Temp1.Add(tmp);
                                 }
-                               List<int> Temp2 = new List<int>() { };
+                                List<int> Temp2 = new List<int>() { };
                                 foreach (int tmp in HSet)
                                 {
                                     Temp2.Add(tmp);
                                 }
-                                
-                                for(int i = 0; i < Temp1.Count; i++)//Защита от загрузки неподходящего разбиения
+
+                                for (int i = 0; i < Temp1.Count; i++)//Защита от загрузки неподходящего разбиения
                                 {
-                                    if(Temp1[i] == Temp2[i])
+                                    if (Temp1[i] == Temp2[i])
                                         Equaials++;
                                 }
                                 if (Equaials == HSet.Count)
@@ -256,13 +293,13 @@ namespace SynergicFailureAftermath.Forms
                                     throw new Exception("Набор разбиений не соответствует графу.");
                                 }
                             }
-                            
+
                         }
-                        
+
                         загрузитьToolStripMenuItem.Enabled = false;
                         UpdateResults();
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show($"Файл не может быть прочитан. Сообщение об ошибке: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Subsets.Clear();
@@ -275,6 +312,23 @@ namespace SynergicFailureAftermath.Forms
         {
 
         }
+
+        private void очиститьБазуДанныхToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartTheBreakage.Enabled=true;
+            using (SQLiteConnection connection = new SQLiteConnection(MW.DatabaseConnectionContext))
+            {
+                string commandstring = "DELETE FROM Subsets";
+                using (SQLiteCommand command = new SQLiteCommand(commandstring, connection))
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            очиститьБазуДанныхToolStripMenuItem.Enabled = false;
+            Subsets = new List<Subset>() { };
+            ListOfSubsets.Rows.Clear();
+        }
     }
-    
+
 }
