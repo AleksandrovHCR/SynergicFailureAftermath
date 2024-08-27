@@ -165,9 +165,9 @@ namespace SynergicFailureAftermath.Forms
                         {
                             Failure failure;
                             if (BrokenLinks.Count==Graph.GetCriticalLinksCount())
-                                failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), true);
+                                failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), true,subset.GetItems());
                             else
-                                failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), false);
+                                failure = new Failure(FailureLog.Count(), Graph.GetBrokenLinks(), false, subset.GetItems());
                             if (!FailureLog.Contains(failure))
                                 FailureLog.Add(failure);
                         }
