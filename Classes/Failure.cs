@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Extensions.DependencyModel;
 using System.Collections.Generic;
 
 
@@ -10,6 +11,7 @@ namespace SynergicFailureAftermath.Classes
         private List<Link> ScaleOfFailure;//Вышедшие из строя узлы
         private bool IsTotal = false;
         private List<Link> RandomCrits = new List<Link>();
+        private HashSet<int> Subset=new HashSet<int>();
 
         public Failure(int index, List<Link> scaleOfFalure, bool IsTotal)
         {
@@ -18,14 +20,35 @@ namespace SynergicFailureAftermath.Classes
             this.IsTotal = IsTotal;
             RandomCrits = GetCriticalLinks();
         }
-        
-        public List<Link> GetCriticalLinks()
+        public Failure(int index, List<Link> scaleOfFalure, bool IsTotal, HashSet<int> Subset)
         {
+            Index = index;
+            this.Subset=Subset;
+            ScaleOfFailure = scaleOfFalure;
+            this.IsTotal = IsTotal;
+            RandomCrits = GetCriticalLinks();
+        }
+
+        public List<Link> GetCriticalLinks()
+        { 
             List<Link> temp = new List<Link>();
-            foreach (Link link in ScaleOfFailure)
+            if (Subset.Count == 0)
             {
-                if (link.GetLinkType()==4)
-                    temp.Add(link);
+               // List<Link> temp = new List<Link>();
+                foreach (Link link in ScaleOfFailure)
+                {
+                    if (link.GetLinkType() == 4)
+                        temp.Add(link);
+                }
+            }
+            else
+            {
+               
+                foreach (Link link in ScaleOfFailure)
+                {
+                    if (link.GetLinkType() == 4 && Subset.Contains(link.getIndex()))
+                        temp.Add(link);
+                }
             }
             return temp;
         }
