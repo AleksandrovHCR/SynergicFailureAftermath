@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace SynergicFailureAftermath.Forms
 {
-    partial class AboutProgramm : Form
+    partial class AboutProgram : Form
     {
-        public AboutProgramm()
+        public AboutProgram()
         {
             InitializeComponent();
             //    this.Text = String.Format("О программе {0}", AssemblyTitle);

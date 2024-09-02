@@ -20,7 +20,8 @@ namespace SynergicFailureAftermath.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MW = MW;
-            label1.Text = "Соединение: " + MW.DatabaseConnectionContext;
+           // label1.Text = "Соединение: " + MW.DatabaseConnectionContext;
+            textBox1.Text = "Соединение: " + MW.DatabaseConnectionContext;
         }
         private void LoadDGW()
         {

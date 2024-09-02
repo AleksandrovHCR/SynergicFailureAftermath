@@ -141,6 +141,7 @@ namespace SynergicFailureAftermath.Forms
             }
             else
             {
+                try { 
                 if (Failures.Count != 0)
                 {
                     Combination Ethalon = null;
@@ -151,6 +152,16 @@ namespace SynergicFailureAftermath.Forms
                             Ethalon = new Combination(fail); break;
                         }
                     }
+                    //if (Ethalon == null)
+                    //{
+                    //    foreach (Failure fail in Failures)//Поиск множества
+                    //    {
+                    //        if (fail.GetCriticalLinks().Count==Graph.GetCriticalLinksCount())
+                    //        {
+                    //            Ethalon = new Combination(fail); break;
+                    //        }
+                    //    }
+                    //}
                     List<Combination> Combinations = new List<Combination>();//хранение разбиений
                     Combination Main_combination = new Combination();//Комбинация-шаблон
                     foreach (Failure fail in Failures)//
@@ -219,6 +230,8 @@ namespace SynergicFailureAftermath.Forms
                 }
                 else
                     MessageBox.Show("Журнал ошибок пуст.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch(Exception ex) { MessageBox.Show($"Эталон не найден. Перезапустите программу и попробуйте снова. Код ошибки: {ex.HResult}", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
         }
 

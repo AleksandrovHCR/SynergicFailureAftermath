@@ -36,7 +36,7 @@ namespace SynergicFailureAftermath
 
         private void AboutButton_Click(object sender, EventArgs e)
         {
-            AboutProgramm about = new AboutProgramm();
+            AboutProgram about = new AboutProgram();
             about.Show();
         }
 
