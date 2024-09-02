@@ -152,7 +152,7 @@ namespace SynergicFailureAftermath.Forms
                 }
                 else
                 {
-                    
+                    FailureLog = new List<Failure>() { };
                     foreach(Subset subset in Subsets)
                     {
                         HashSet<int> BrokenLinks=subset.GetItems();

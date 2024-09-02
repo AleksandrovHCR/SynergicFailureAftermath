@@ -1,5 +1,4 @@
 ﻿
-using Microsoft.Extensions.DependencyModel;
 using System.Collections.Generic;
 
 
@@ -82,7 +81,7 @@ namespace SynergicFailureAftermath.Classes
             string temp = null;
             foreach (Link link in ScaleOfFailure)
             {
-                if (link.GetLinkType()==4)
+                if (link.GetLinkType()==4 && Subset.Contains(link.getIndex()))
                 temp += $"{link.getIndex() + 1};";
             }
             return '{' + temp + '}';
